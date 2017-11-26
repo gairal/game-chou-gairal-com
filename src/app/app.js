@@ -1,8 +1,10 @@
 import 'es6-promise/auto';
 
+import ChuGame from './ChuGame';
+
 const init = () => {
   // COMPONENT CREATION
-  [].forEach(e => e.factory());
+  [ChuGame].forEach(e => e.factory());
 };
 
 
