@@ -1,0 +1,54 @@
+{
+    "base": {
+        "src": "src/",
+        "build": "build/",
+        "dist": "dist/",
+        "test": "test/",
+        "vendor": "vendor/"
+    },
+    "path": {
+        "sass": "assets/scss/",
+        "css": "assets/css/",
+        "images": "assets/img/",
+        "fonts": "assets/fonts/",
+        "js": "app/",
+        "static": "static/"
+    },
+    "files": {
+        "index": "index.html",
+        "html": "**/*.html",
+        "pug": "**/*.pug",
+        "pugindex": "index.pug",
+        "sass": "app.scss",
+        "sassAll": "**/*.scss",
+        "css": "**/*.css",
+        "js": "**/*.js",
+        "fonts": "**",
+        "images": "{,*/,*/*/}*.{png,jpg,jpeg,gif}",
+        "static": "**",
+        "hidden": ".**"
+    },
+    "vendor":{
+        "js": [],
+        "assets": [
+          "node_modules/font-awesome/fonts/fontawesome-webfont.eot",
+          "node_modules/font-awesome/fonts/fontawesome-webfont.svg",
+          "node_modules/font-awesome/fonts/fontawesome-webfont.eot",
+          "node_modules/font-awesome/fonts/fontawesome-webfont.ttf",
+          "node_modules/font-awesome/fonts/fontawesome-webfont.woff",
+          "node_modules/font-awesome/fonts/fontawesome-webfont.woff2"
+      ]
+    },
+    "env": {
+        "dev": {
+            "api_url": "//api.dev.example.com",
+            "host": "dev.example.com",
+            "path": "/home/webadmin/htdocs/example.com"
+        },
+        "prod": {
+            "api_url": "//api.example.com",
+            "host": "example.com",
+            "path": "/home/webadmin/htdocs/example.com"
+        }
+    }
+}

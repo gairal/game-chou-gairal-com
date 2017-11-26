@@ -1,0 +1,141 @@
+/* ==============================util functions=================================== */
+@mixin background-gradient-top-down($bgcolor, $startcolor, $endcolor, $img:"") {
+  background-color: $bgcolor $img;
+
+  @if $img == "" {
+    background-image: linear-gradient(to bottom, $startcolor, $endcolor);
+  }
+
+  @else {
+    background-image:
+      url($img),
+      linear-gradient(to bottom, $startcolor, $endcolor);
+  }
+}
+
+@mixin placeholder-color($color, $errorcolor) {
+  &::-webkit-input-placeholder { color: $color; }
+
+  @if $errorcolor != "" {
+    &.error::-webkit-input-placeholder { color: $errorcolor; }
+  }
+
+  &:-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  @if $errorcolor != "" {
+    &.error:-moz-placeholder {
+      color: $errorcolor;
+      opacity: 1;
+    }
+  }
+
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  @if $errorcolor != "" {
+    &.error::-moz-placeholder {
+      color: $errorcolor;
+      opacity: 1;
+    }
+  }
+  &:-ms-input-placeholder { color: $color; }
+
+  @if $errorcolor != "" {
+    &.error:-ms-input-placeholder { color: $errorcolor; }
+  }
+}
+
+/* BOX SHADOW */
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0, 0, 0, 0.4), $inset: "") {
+  @if ($inset != "") {
+    box-shadow: $inset $x $y $blur $color;
+  }
+
+  @else {
+    box-shadow: $x $y $blur $color;
+  }
+}
+
+/* DOUBLE BORDERS */
+@mixin double-borders($colorOne: #3C3C3C, $colorTwo: #999999, $radius: 0) {
+  border: 1px solid $colorOne;
+  box-shadow: 0 0 0 1px $colorTwo;
+
+  @include border-radius( $radius );
+}
+
+@mixin anchor($color, $hovercolor, $decoration: "", $hoverdecoration: "") {
+  a {
+    color: $color;
+
+    @if $decoration != "" {
+      text-decoration: $decoration;
+    }
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:visited {
+      color: $hovercolor !important;
+
+      @if $hoverdecoration != "" {
+        text-decoration: $hoverdecoration;
+      }
+    }
+  }
+}
+
+@mixin font-face($font-family, $file-path, $font-weight, $font-style) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $font-weight;
+    font-style: $font-style;
+    src: url('../fonts/#{$file-path}.eot');
+    src:
+      url('../fonts/#{$file-path}.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/#{$file-path}.woff') format('woff'),
+      url('../fonts/#{$file-path}.ttf') format('truetype'),
+      url('../fonts/#{$file-path}.svg##{$font-family}') format('svg');
+  }
+}
+
+/* ROTATE */
+@mixin rotate($deg: 0, $m11: 0, $m12: 0, $m21: 0, $m22: 0) {
+  transform: rotate($deg + deg);
+  filter:
+    progid:dximagetransform.microsoft.matrix(
+      M11=#{$m11},
+      M12=#{$m12},
+      M21=#{$m21},
+      M22=#{$m22},
+      sizingMethod='auto expand'
+    );
+  zoom: 1;
+}
+
+/* TEXT SHADOW */
+@mixin text-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0, 0, 0, 0.4)) {
+  text-shadow: $x $y $blur $color;
+}
+
+/* TRIPLE BORDERS */
+@mixin triple-borders($colorOne: #3C3C3C, $colorTwo: #999999, $colorThree: #000000, $radius: 0) {
+  border: 1px solid $colorOne;
+
+  @include border-radius($radius);
+
+  box-shadow: 0 0 0 1px $colorTwo, 0 0 0 2px $colorThree;
+}
+
+%clearfix {
+  &::after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
