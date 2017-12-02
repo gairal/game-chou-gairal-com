@@ -9,7 +9,7 @@ const conf = require('../config.json'),
 function js (config) {
   'use strict';
   return gulp.src([conf.base.src + conf.path.js + conf.files.js])
-  .pipe(eslint({configFile: './.eslintrc.json'}))
+  .pipe(eslint({configFile: './.eslintrc'}))
   .pipe(eslint.format())
   .pipe(gulpWebpack(config, webpack))
   .pipe(gulp.dest(conf.base.build + conf.path.js));
