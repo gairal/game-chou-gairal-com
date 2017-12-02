@@ -1,3 +1,4 @@
+// @flow
 import { Sprite } from 'pixi.js';
 
 export default class Sprites {
@@ -15,7 +16,7 @@ export default class Sprites {
     ];
   }
 
-  load() {
+  load(): Promise {
     return new Promise((resolve) => {
       this.app.loader
         .add(this.tilesets)
@@ -25,7 +26,7 @@ export default class Sprites {
     });
   }
 
-  static add(res) {
+  static add(res): Promise {
     return new Promise((resolve) => {
       const level = new Sprite(res.resources.level.texture);
       level.x = 96;
@@ -37,7 +38,7 @@ export default class Sprites {
     });
   }
 
-  static factory(app) {
+  static factory(app): Promise {
     const sprites = new Sprites(app);
     return new Promise((resolve) => {
       sprites
