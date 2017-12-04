@@ -6,11 +6,11 @@ export default class Sprites {
     this.tilesets = [
       {
         name: 'level',
-        url: 'assets/img/mario.png',
+        url: 'assets/img/level.png',
       },
       {
         name: 'mario',
-        url: 'assets/img/mario.png',
+        url: 'assets/img/mario3.png',
       },
     ];
   }
