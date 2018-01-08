@@ -13,7 +13,8 @@ gulp.task('copy:build', function () {
   gulp.src([
     conf.base.src + conf.path.fonts + conf.files.fonts,
     conf.base.src + conf.path.i18n + conf.files.i18n,
-    conf.base.src + conf.path.images + conf.files.images
+    conf.base.src + conf.path.images + conf.files.images,
+    conf.base.src + conf.path.json + conf.files.json
   ], {base: './' + conf.base.src})
   .pipe(gulp.dest(conf.base.build));
 
@@ -35,7 +36,8 @@ gulp.task('copy:release', function () {
   .pipe(gulp.dest(conf.base.dist));
   //Fonts + images
   gulp.src([
-    conf.base.src + conf.path.fonts + conf.files.fonts
+    conf.base.src + conf.path.fonts + conf.files.fonts,
+    conf.base.src + conf.path.json + conf.files.json
   ], {base: './' + conf.base.src})
   .pipe(gulp.dest(conf.base.dist));
 

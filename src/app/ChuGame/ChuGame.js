@@ -1,21 +1,41 @@
 import { Application } from 'pixi.js';
-import Sprites from '../components/Sprites';
+import Level from '../components/Level';
+import Mario from '../components/Mario';
 
 export default class ChuGame {
   constructor() {
-    this.app = new Application();
+    this.app = new Application({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      antialias: true,
+      resolution: 1,
+    });
     this.app.renderer.view.style.position = 'absolute';
     this.app.renderer.view.style.display = 'block';
     this.app.renderer.autoResize = true;
-    this.app.renderer.resize(window.innerWidth, window.innerHeight);
+
+    this.unit = 16;
+    this.scale = 2;
+    this.level = new Level(this);
+    this.mario = new Mario(this);
+  }
+
+  loadSpriteSheets() {
+    return new Promise((resolve) => {
+      this.app.loader
+        .add(this.level.tileset)
+        .add(this.mario.tileset)
+        .load((loader, resources) => resolve(resources));
+    });
   }
 
   init() {
     document.body.appendChild(this.app.view);
-    Sprites.factory(this.app)
-      .then(() => {
+    this.loadSpriteSheets()
+      .then((res) => {
+        this.level.draw(res);
         this.app.ticker.add(() => {
-          // each frame we spin the bunny around a bit
+          this.mario.draw(res);
           // console.log('frame');
         });
       });

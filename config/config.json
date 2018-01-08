@@ -12,6 +12,7 @@
         "images": "assets/img/",
         "fonts": "assets/fonts/",
         "js": "app/",
+        "json": "assets/json/",
         "static": "static/"
     },
     "files": {
@@ -25,6 +26,7 @@
         "js": "**/*.js",
         "fonts": "**",
         "images": "{,*/,*/*/}*.{png,jpg,jpeg,gif}",
+        "json": "**/*.json",
         "static": "**",
         "hidden": ".**"
     },

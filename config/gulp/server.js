@@ -10,7 +10,8 @@ gulp.task('browser-sync:build', function() {
       baseDir: conf.base.build
     },
     reloadDebounce: 2000,
-    notify: false
+    notify: false,
+    open: false
   });
 });
 
@@ -21,7 +22,8 @@ gulp.task('browser-sync:dist', function() {
       baseDir: conf.base.dist
     },
     reloadDebounce: 2000,
-    notify: false
+    notify: false,
+    open: false
   });
 });
 
@@ -30,4 +32,5 @@ gulp.task('watch', function () {
   gulp.watch(conf.base.src + conf.path.sass + conf.files.sassAll, ['sass', browserSync.reload]);
   gulp.watch(conf.base.src + conf.path.js + conf.files.js, ['js:build', browserSync.reload]);
   gulp.watch(conf.base.src + conf.files.pug, ['pug:build', browserSync.reload]);
+  gulp.watch(conf.base.src + conf.path.json + conf.files.json, ['copy:build', browserSync.reload]);
 });
