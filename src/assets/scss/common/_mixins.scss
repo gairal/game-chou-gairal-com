@@ -156,8 +156,8 @@ $color-default-double-border-three: #000;
 }
 
 /* Z-INDEX */
-@function z-index($key) {
-  @return map-get($z-index, $key);
+@function z($key) {
+  @return map-get($z-indexes, $key);
 }
 
 /* TRANSITION */

@@ -1,5 +1,3 @@
-import { Sprite } from 'pixi.js';
-
 import Chubject from '../core/Chubject';
 import map from './json/1-1.json';
 
@@ -42,15 +40,6 @@ export default class Level extends Chubject {
     }
 
     return null;
-  }
-
-  addToApp(texture, coords) {
-    const sprite = new Sprite(texture);
-    sprite.x = coords.x * this.game.unit * this.game.scale;
-    sprite.y = coords.y * this.game.unit * this.game.scale;
-    sprite.scale.set(this.game.scale);
-
-    this.game.app.stage.addChild(sprite);
   }
 
   draw(res) {

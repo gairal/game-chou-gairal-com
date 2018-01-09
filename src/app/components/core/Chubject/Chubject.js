@@ -15,11 +15,11 @@ export default class Chubject {
   }
 
   get unit() {
-    return this.game.unit;
+    return this.game.opts.unit;
   }
 
   get scale() {
-    return this.game.scale;
+    return this.game.opts.scale;
   }
 
   get tileset() {
