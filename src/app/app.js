@@ -4,7 +4,8 @@ import ChuGame from './ChuGame';
 
 const init = () => {
   // COMPONENT CREATION
-  [ChuGame].forEach(e => e.factory());
+  const game = ChuGame.factory();
+  window.addEventListener('resize', () => game.app.renderer.resize(window.innerWidth, window.innerHeight));
 };
 
 

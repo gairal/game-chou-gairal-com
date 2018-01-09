@@ -1,5 +1,6 @@
 import { Application } from 'pixi.js';
 import Progress from '../components/Progress';
+import Keyboard from '../components/core/Keyboard';
 import Level from '../components/Level';
 import Mario from '../components/Mario';
 
@@ -20,15 +21,18 @@ export default class ChuGame {
       scale: 2,
     };
 
+    // default stuff
+    this.keyboard = Keyboard.factory();
+    this.progress = new Progress();
+
+    // Sprites / entities
     this.level = new Level(this);
-    this.mario = new Mario(this);
+    this.mario = Mario.factory(this);
 
     this.tilesets = [
       this.level.tileset,
       this.mario.tileset,
     ];
-
-    this.progress = new Progress();
   }
 
   /**
@@ -41,7 +45,7 @@ export default class ChuGame {
     return new Promise((resolve) => {
       this.app.loader
         .add(this.tilesets)
-        .on('progress', (loader) => this.progress.progress(loader))
+        .on('progress', loader => this.progress.progress(loader))
         .load((loader, resources) => resolve(resources));
     });
   }
@@ -54,9 +58,9 @@ export default class ChuGame {
    */
   start(res) {
     this.level.draw(res);
-    this.app.ticker.add(() => {
-      this.mario.draw(res);
-      // console.log('frame');
+    this.mario.draw(res);
+    this.app.ticker.add((delta) => {
+      this.mario.run(delta);
     });
   }
 
@@ -68,8 +72,6 @@ export default class ChuGame {
    */
   init() {
     this.load().then(res => this.start(res));
-    window.addEventListener('resize', () => this
-      .app.renderer.resize(window.innerWidth, window.innerHeight));
     document.body.appendChild(this.app.view);
 
     return this;

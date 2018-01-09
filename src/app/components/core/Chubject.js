@@ -22,16 +22,20 @@ export default class Chubject {
     return this.game.opts.scale;
   }
 
+  get scaledUnit() {
+    return this.scale * this.unit;
+  }
+
   get tileset() {
     return this.opts.tileset;
   }
 
   render(texture, coords) {
-    const sprite = new Sprite(texture);
-    sprite.x = coords.x * this.unit * this.scale;
-    sprite.y = coords.y * this.unit * this.scale;
-    sprite.scale.set(this.scale);
+    this.sprite = new Sprite(texture);
+    this.sprite.x = coords.x * this.scaledUnit;
+    this.sprite.y = coords.y * this.scaledUnit;
+    this.sprite.scale.set(this.scale);
 
-    this.stage.addChild(sprite);
+    this.stage.addChild(this.sprite);
   }
 }
