@@ -15,29 +15,26 @@ export default class Keyboard {
     };
   }
 
-  keydown(e) {
+  handle(e) {
     if (this.keys.indexOf(e.code) > -1) {
       const handler = this.handlers[e.code];
-      if (handler.isUp && handler.press) handler.press();
-      handler.isDown = true;
-      handler.isUp = false;
-      e.preventDefault();
-    }
-  }
 
-  keyup(e) {
-    if (this.keys.indexOf(e.code) > -1) {
-      const handler = this.handlers[e.code];
-      if (handler.isDown && handler.release) handler.release();
-      handler.isDown = false;
-      handler.isUp = true;
+      if (e.type === 'keydown') {
+        if (!handler.isDown && handler.press) handler.press();
+        handler.isDown = true;
+      } else if (e.type === 'keyup') {
+        if (handler.isDown && handler.release) handler.release();
+        handler.isDown = false;
+      }
+
       e.preventDefault();
     }
   }
 
   init() {
-    window.addEventListener('keydown', e => this.keydown(e), false);
-    window.addEventListener('keyup', e => this.keyup(e), false);
+    ['keydown', 'keyup'].forEach((type) => {
+      window.addEventListener(type, e => this.handle(e), false);
+    });
     return this;
   }
 

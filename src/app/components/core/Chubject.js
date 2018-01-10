@@ -4,6 +4,7 @@ export default class Chubject {
   constructor(game, opts) {
     this.game = game;
     this.opts = opts;
+    this.sprite = null;
   }
 
   get app() {

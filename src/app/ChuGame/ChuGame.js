@@ -19,6 +19,8 @@ export default class ChuGame {
     this.opts = {
       unit: 16,
       scale: 2,
+      gravity: 0.5,
+      hasGravity: false,
     };
 
     // default stuff
@@ -60,7 +62,7 @@ export default class ChuGame {
     this.level.draw(res);
     this.mario.draw(res);
     this.app.ticker.add((delta) => {
-      this.mario.run(delta);
+      this.mario.update(delta);
     });
   }
 

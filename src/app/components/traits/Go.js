@@ -19,13 +19,24 @@ export default class Go extends Trait {
     this.heading = 1;
   }
 
+  forward() {
+    this.vx = this.DIRS.forward;
+  }
+
+  backward() {
+    this.vx = this.DIRS.backward;
+  }
+
+  stop() {
+    this.vx = this.DIRS.idle;
+    this.entity.vel.x = 0;
+  }
+
   update() {
     if (this.vx !== this.DIRS.idle) {
-      this.entity.sprite.x += this.vx * this.entity.scaledUnit;
-      // this.entity.sprite.x += this.vx;
+      console.log('test');
+      this.entity.vel.x += this.vx * 2;
     }
-
-    // console.log(delta);
 
     // const absX = Math.abs(this.entity.vel.x);
 
