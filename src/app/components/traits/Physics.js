@@ -1,3 +1,4 @@
+import Game from '../../ChuGame';
 import Trait from './Trait';
 
 export default class Physics extends Trait {
@@ -9,8 +10,8 @@ export default class Physics extends Trait {
     this.entity.pos.x += this.entity.vel.x * delta;
     this.entity.pos.y += this.entity.vel.y * delta;
 
-    if (this.entity.game.opts.hasGravity) {
-      this.entity.vel.y += this.entity.game.opts.gravity * delta;
+    if (Game.constants.hasGravity) {
+      this.entity.vel.y += Game.constants.gravity * delta;
     }
   }
 }

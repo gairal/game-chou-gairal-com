@@ -58,10 +58,10 @@ export default class Level extends Chubject {
           tile.ranges.forEach((range) => {
             const spans = Level.expandRange(range);
             spans.forEach((span) => {
-              this.render(texture, span);
               this.grid.set(span.x, span.y, {
                 type: tile.type,
               });
+              this.render(texture, span);
             });
           });
         });

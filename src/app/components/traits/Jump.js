@@ -10,7 +10,7 @@ export default class Jump extends Trait {
     this.requestTime = 0;
     this.gracePeriod = 0.1;
     this.speedBoost = 0.3;
-    this.velocity = 10;
+    this.velocity = 15;
   }
 
   get falling() {

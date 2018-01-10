@@ -1,6 +1,8 @@
 import { Application } from 'pixi.js';
+import Logger from '../components/core/Logger';
 import Progress from '../components/Progress';
-import Keyboard from '../components/core/Keyboard';
+import Input from '../components/core/Input';
+import TileCollider from '../components/collision/TileCollider';
 import Level from '../components/Level';
 import Mario from '../components/Mario';
 
@@ -16,24 +18,33 @@ export default class ChuGame {
     this.app.renderer.view.style.display = 'block';
     this.app.renderer.autoResize = true;
 
-    this.opts = {
-      unit: 16,
-      scale: 2,
-      gravity: 0.5,
-      hasGravity: false,
-    };
-
     // default stuff
-    this.keyboard = Keyboard.factory();
+    this.input = Input.factory();
     this.progress = new Progress();
 
-    // Sprites / entities
+    // level
     this.level = new Level(this);
+    this.TileCollider = new TileCollider(this.level.grid);
+
+    // entities
     this.mario = Mario.factory(this);
     this.entities = [
       this.mario,
     ];
+
+    this.logger = new Logger({ level: ChuGame.constants.logLevel });
   }
+
+  static get constants() {
+    return {
+      unit: 16,
+      scale: 2,
+      gravity: 0.5,
+      hasGravity: true,
+      logLevel: Logger.levels.DEBUG,
+    };
+  }
+
 
   /**
    * Laod all spritesheets
@@ -69,7 +80,10 @@ export default class ChuGame {
       }),
     ]).then(() => {
       this.app.ticker.add((delta) => {
-        this.entities.forEach(entity => entity.update(delta));
+        this.entities.forEach((entity) => {
+          entity.update(delta);
+          this.TileCollider.test(entity);
+        });
       });
     });
   }

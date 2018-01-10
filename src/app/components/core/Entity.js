@@ -7,6 +7,7 @@ export default class Entity extends Chubject {
 
     this.traits = [];
     this.vel = new Vec2(opts.vel.x, opts.vel.y);
+    this.size = new Vec2(opts.size.x, opts.size.y);
   }
 
   get pos() {
@@ -18,6 +19,10 @@ export default class Entity extends Chubject {
     this.sprite.y = y;
   }
 
+  logPos() {
+    this.game.logger.info(this.tileset.name, `| x: ${this.pos.x} - y: ${this.pos.y}`);
+  }
+
   draw(res) {
     return new Promise((resolve) => {
       this.textures = res[this.tileset.name].textures;
@@ -25,6 +30,8 @@ export default class Entity extends Chubject {
         x: this.opts.pos.x,
         y: this.opts.pos.y,
       });
+
+      this.logPos();
 
       resolve();
     });

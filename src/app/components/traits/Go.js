@@ -10,7 +10,8 @@ export default class Go extends Trait {
       backward: -1,
     };
 
-    this.vx = this.DIRS.idle;
+    this.dir = this.DIRS.idle;
+    this.speed = 2;
     this.acceleration = 400;
     this.deceleration = 300;
     this.dragFactor = 1 / 5000;
@@ -20,21 +21,22 @@ export default class Go extends Trait {
   }
 
   forward() {
-    this.vx = this.DIRS.forward;
+    this.dir = this.DIRS.forward;
   }
 
   backward() {
-    this.vx = this.DIRS.backward;
+    this.dir = this.DIRS.backward;
   }
 
   stop() {
-    this.vx = this.DIRS.idle;
+    this.dir = this.DIRS.idle;
     this.entity.vel.x = 0;
   }
 
-  update() {
-    if (this.vx !== this.DIRS.idle) {
-      this.entity.vel.x += this.vx * 2;
+  update(delta) {
+    if (this.dir !== this.DIRS.idle) {
+      this.entity.vel.x += this.dir * this.speed * delta;
+      this.entity.logPos();
     }
 
     // const absX = Math.abs(this.entity.vel.x);
