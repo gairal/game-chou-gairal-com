@@ -19,10 +19,14 @@ export default class Entity extends Chubject {
   }
 
   draw(res) {
-    this.textures = res[this.tileset.name].textures;
-    this.render(this.textures[this.opts.pos.tile], {
-      x: this.opts.pos.x,
-      y: this.opts.pos.y,
+    return new Promise((resolve) => {
+      this.textures = res[this.tileset.name].textures;
+      this.render(this.textures[this.opts.pos.tile], {
+        x: this.opts.pos.x,
+        y: this.opts.pos.y,
+      });
+
+      resolve();
     });
   }
 

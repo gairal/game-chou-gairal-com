@@ -34,7 +34,6 @@ export default class Go extends Trait {
 
   update() {
     if (this.vx !== this.DIRS.idle) {
-      console.log('test');
       this.entity.vel.x += this.vx * 2;
     }
 

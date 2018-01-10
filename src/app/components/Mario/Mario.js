@@ -11,8 +11,8 @@ export default class Mario extends Entity {
         url: 'assets/json/mario.json',
       },
       pos: {
-        x: 5,
-        y: 12,
+        x: 4,
+        y: 2,
         tile: 'idle',
       },
       vel: {

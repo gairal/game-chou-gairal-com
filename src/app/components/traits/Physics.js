@@ -9,7 +9,8 @@ export default class Physics extends Trait {
     this.entity.pos.x += this.entity.vel.x * delta;
     this.entity.pos.y += this.entity.vel.y * delta;
 
-    if (this.entity.game.opts.hasGravity)
+    if (this.entity.game.opts.hasGravity) {
       this.entity.vel.y += this.entity.game.opts.gravity * delta;
+    }
   }
 }

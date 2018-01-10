@@ -1,4 +1,5 @@
 import Chubject from '../core/Chubject';
+import Matrix from '../core/Matrix';
 import map from './json/1-1.json';
 
 export default class Level extends Chubject {
@@ -12,6 +13,7 @@ export default class Level extends Chubject {
 
     this.map = map;
     this.sprites = [];
+    this.grid = new Matrix();
   }
 
   static expandSpan(xStart, xLen, yStart, yLen) {
@@ -45,18 +47,27 @@ export default class Level extends Chubject {
   draw(res) {
     this.textures = res.level.textures;
 
-    let texture;
-    this.map.layers.forEach((layer) => {
-      layer.tiles.forEach((tile) => {
-        if (!tile.name) return;
-        texture = this.textures[tile.name];
-        if (!texture) return;
+    return new Promise((resolve) => {
+      let texture;
+      this.map.layers.forEach((layer) => {
+        layer.tiles.forEach((tile) => {
+          if (!tile.name) return;
+          texture = this.textures[tile.name];
+          if (!texture) return;
 
-        tile.ranges.forEach((range) => {
-          const spans = Level.expandRange(range);
-          spans.forEach(span => this.render(texture, span));
+          tile.ranges.forEach((range) => {
+            const spans = Level.expandRange(range);
+            spans.forEach((span) => {
+              this.render(texture, span);
+              this.grid.set(span.x, span.y, {
+                type: tile.type,
+              });
+            });
+          });
         });
       });
+
+      resolve();
     });
   }
 }

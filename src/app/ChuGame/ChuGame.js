@@ -30,10 +30,8 @@ export default class ChuGame {
     // Sprites / entities
     this.level = new Level(this);
     this.mario = Mario.factory(this);
-
-    this.tilesets = [
-      this.level.tileset,
-      this.mario.tileset,
+    this.entities = [
+      this.mario,
     ];
   }
 
@@ -46,7 +44,10 @@ export default class ChuGame {
   load() {
     return new Promise((resolve) => {
       this.app.loader
-        .add(this.tilesets)
+        .add([
+          this.level.tileset,
+          this.mario.tileset,
+        ])
         .on('progress', loader => this.progress.progress(loader))
         .load((loader, resources) => resolve(resources));
     });
@@ -59,10 +60,17 @@ export default class ChuGame {
    * @memberof ChuGame
    */
   start(res) {
-    this.level.draw(res);
-    this.mario.draw(res);
-    this.app.ticker.add((delta) => {
-      this.mario.update(delta);
+    Promise.all([
+      this.level.draw(res),
+      new Promise((resolve) => {
+        // TODO: Careful ! draw() returns also a Promise so not sure evrything will be ready
+        this.entities.forEach(entity => entity.draw(res));
+        resolve();
+      }),
+    ]).then(() => {
+      this.app.ticker.add((delta) => {
+        this.entities.forEach(entity => entity.update(delta));
+      });
     });
   }
 
