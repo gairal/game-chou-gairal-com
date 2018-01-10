@@ -2,7 +2,6 @@ import { Application } from 'pixi.js';
 import Logger from '../components/core/Logger';
 import Progress from '../components/Progress';
 import Input from '../components/core/Input';
-import TileCollider from '../components/collision/TileCollider';
 import Level from '../components/Level';
 import Mario from '../components/Mario';
 
@@ -24,7 +23,6 @@ export default class ChuGame {
 
     // level
     this.level = new Level(this);
-    this.TileCollider = new TileCollider(this.level.grid);
 
     // entities
     this.mario = Mario.factory(this);
@@ -80,10 +78,7 @@ export default class ChuGame {
       }),
     ]).then(() => {
       this.app.ticker.add((delta) => {
-        this.entities.forEach((entity) => {
-          entity.update(delta);
-          this.TileCollider.test(entity);
-        });
+        this.entities.forEach(entity => entity.update(delta));
       });
     });
   }

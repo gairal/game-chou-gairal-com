@@ -1,14 +1,15 @@
 import TileResolver from './TileResolver';
 
 export default class TileCollider {
-  constructor(tileMatrix) {
-    this.tiles = new TileResolver(tileMatrix);
+  constructor(entity) {
+    this.entity = entity;
+    this.tiles = new TileResolver(entity.game.level.grid);
   }
 
-  checkX(entity) {
+  checkX() {
     const matches = this.tiles.searchByRange(
-      entity.pos.x, entity.pos.x + entity.size.x,
-      entity.pos.y, entity.pos.y + entity.size.y,
+      this.entity.pos.x, this.entity.pos.x + this.entity.size.x,
+      this.entity.pos.y, this.entity.pos.y + this.entity.size.y,
     );
 
     if (!matches) return;
@@ -16,24 +17,24 @@ export default class TileCollider {
     matches.forEach((match) => {
       if (match.tile.type !== 'hard') return;
 
-      if (entity.vel.x > 0) {
-        if (entity.pos.x + entity.size.x > match.x1) {
-          entity.pos.x = match.x1 - entity.size.x;
-          entity.vel.x = 0;
+      if (this.entity.vel.x > 0) {
+        if (this.entity.pos.x + this.entity.size.x > match.x1) {
+          this.entity.pos.x = match.x1 - this.entity.size.x;
+          this.entity.vel.x = 0;
         }
-      } else if (entity.vel.x < 0) {
-        if (entity.pos.x < match.x2) {
-          entity.pos.x = match.x2;
-          entity.vel.x = 0;
+      } else if (this.entity.vel.x < 0) {
+        if (this.entity.pos.x < match.x2) {
+          this.entity.pos.x = match.x2;
+          this.entity.vel.x = 0;
         }
       }
     });
   }
 
-  checkY(entity) {
+  checkY() {
     const matches = this.tiles.searchByRange(
-      entity.pos.x, entity.pos.x + entity.size.x,
-      entity.pos.y, entity.pos.y + entity.size.y,
+      this.entity.pos.x, this.entity.pos.x + this.entity.size.x,
+      this.entity.pos.y, this.entity.pos.y + this.entity.size.y,
     );
 
     if (!matches) return;
@@ -41,22 +42,17 @@ export default class TileCollider {
     matches.forEach((match) => {
       if (match.tile.type !== 'hard') return;
 
-      if (entity.vel.y > 0) {
-        if (entity.pos.y + entity.size.y > match.y1) {
-          entity.pos.y = match.y1 - entity.size.y;
-          entity.vel.y = 0;
+      if (this.entity.vel.y > 0) {
+        if (this.entity.pos.y + this.entity.size.y > match.y1) {
+          this.entity.pos.y = match.y1 - this.entity.size.y;
+          this.entity.vel.y = 0;
         }
-      } else if (entity.vel.y < 0) {
-        if (entity.pos.y < match.y2) {
-          entity.pos.y = match.y2;
-          entity.vel.y = 0;
+      } else if (this.entity.vel.y < 0) {
+        if (this.entity.pos.y < match.y2) {
+          this.entity.pos.y = match.y2;
+          this.entity.vel.y = 0;
         }
       }
     });
-  }
-
-  test(entity) {
-    this.checkY(entity);
-    this.checkX(entity);
   }
 }

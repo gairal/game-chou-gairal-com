@@ -1,5 +1,6 @@
 import Chubject from './Chubject';
 import Vec2 from './Vec2';
+import TileCollider from '../collision/TileCollider';
 
 export default class Entity extends Chubject {
   constructor(game, opts) {
@@ -8,6 +9,7 @@ export default class Entity extends Chubject {
     this.traits = [];
     this.vel = new Vec2(opts.vel.x, opts.vel.y);
     this.size = new Vec2(opts.size.x, opts.size.y);
+    this.tileCollider = new TileCollider(this);
   }
 
   get pos() {
