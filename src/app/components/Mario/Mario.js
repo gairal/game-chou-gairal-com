@@ -18,10 +18,8 @@ export default class Mario extends Entity {
         tile: 'idle',
       },
       hitbox: {
-        offsetX: 1,
-        offsetY: 0,
-        width: 14,
-        height: 30,
+        width: 20, // 14
+        height: 20, // 16
       },
     });
 
@@ -50,7 +48,7 @@ export default class Mario extends Entity {
     });
 
     this.game.input.addClick(1, (e) => {
-      if (ChuGame.constants.logLevel < Logger.levels.DEBUG) return;
+      if (!ChuGame.constants.DEBUG) return;
 
       this.vel.set(0, 0);
       this.set(e.offsetX, e.offsetY);

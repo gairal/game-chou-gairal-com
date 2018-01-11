@@ -21,37 +21,37 @@ export default class ChuSprite extends Sprite {
     return this.game.app;
   }
 
-  get bottom() {
-    return this.y + this.height;
-  }
-
-  get top() {
-    return this.y;
-  }
-
-  get left() {
-    return this.x;
-  }
-
-  get right() {
-    return this.x + this.width;
-  }
-
   // get bottom() {
-  //   return this.hitArea.y + this.hitArea.height;
+  //   return this.y + this.height;
   // }
 
   // get top() {
-  //   return this.hitArea.y;
+  //   return this.y;
   // }
 
   // get left() {
-  //   return this.hitArea.x;
+  //   return this.x;
   // }
 
   // get right() {
-  //   return this.hitArea.x + this.hitArea.width;
+  //   return this.x + this.width;
   // }
+
+  get bottom() {
+    return this.hitArea.y + this.hitArea.height;
+  }
+
+  get top() {
+    return this.hitArea.y;
+  }
+
+  get left() {
+    return this.hitArea.x;
+  }
+
+  get right() {
+    return this.hitArea.x + this.hitArea.width;
+  }
 
   /**
    * Set Sprite position
@@ -80,8 +80,8 @@ export default class ChuSprite extends Sprite {
    * @memberof ChuSprite
    */
   updateHitArea() {
-    this.hitArea.x = this.x + this.opts.hitbox.offsetX;
-    this.hitArea.y = this.y + this.opts.hitbox.offsetY;
+    this.hitArea.x = this.x;
+    this.hitArea.y = this.y;
   }
 
   /**
