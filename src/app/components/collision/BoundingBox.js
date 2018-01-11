@@ -11,19 +11,19 @@ export default class BoundingBox {
   }
 
   get bottom() {
-    return this.entity.pos.y + this.entity.size.y + this.entity.offset.y;
+    return this.entity.y + this.entity.size.y + this.entity.offset.y;
   }
 
   set bottom(y) {
-    this.entity.pos.y = y - (this.entity.size.y + this.entity.offset.y);
+    this.entity.y = y - (this.entity.size.y + this.entity.offset.y);
   }
 
   get top() {
-    return this.entity.pos.y + this.entity.offset.y;
+    return this.entity.y + this.entity.offset.y;
   }
 
   set top(y) {
-    this.entity.pos.y = y - this.entity.offset.y;
+    this.entity.y = y - this.entity.offset.y;
   }
 
   get left() {
@@ -31,7 +31,7 @@ export default class BoundingBox {
   }
 
   set left(x) {
-    this.entity.pos.x = x - this.entity.offset.x;
+    this.entity.x = x - this.entity.offset.x;
   }
 
   get right() {
@@ -39,6 +39,6 @@ export default class BoundingBox {
   }
 
   set right(x) {
-    this.entity.pos.x = x - (this.entity.size.x + this.entity.offset.x);
+    this.entity.x = x - (this.entity.size.x + this.entity.offset.x);
   }
 }

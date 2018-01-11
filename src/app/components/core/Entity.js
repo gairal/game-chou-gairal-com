@@ -1,11 +1,10 @@
-import Chubject from './Chubject';
+import ChuSprite from './ChuSprite';
 import Game from '../../ChuGame';
 import Vec2 from './Vec2';
 import Animation from './Animation';
 import TileCollider from '../collision/TileCollider';
-import BoundingBox from '../collision/BoundingBox';
 
-export default class Entity extends Chubject {
+export default class Entity extends ChuSprite {
   constructor(game, opts) {
     super(game, opts);
 
@@ -15,20 +14,10 @@ export default class Entity extends Chubject {
     this.size = new Vec2(opts.size.x, opts.size.y);
     this.offset = new Vec2(0, 0);
     this.tileCollider = new TileCollider(this);
-    this.bounds = new BoundingBox(this);
   }
 
-  get pos() {
-    return this.sprite || new Vec2(this.opts.pos.x, this.opts.pos.y);
-  }
-
-  setPos(x, y) {
-    this.sprite.x = x;
-    this.sprite.y = y;
-  }
-
-  getBounds() {
-    return this.sprite.getBounds();
+  get tileset() {
+    return this.opts.tileset;
   }
 
   /**
@@ -58,34 +47,6 @@ export default class Entity extends Chubject {
   }
 
   /**
-   * Log current position (used for debug only)
-   *
-   * @memberof Entity
-   */
-  logPos() {
-    this.game.logger.info(this.tileset.name, `| x: ${this.pos.x} - y: ${this.pos.y}`);
-  }
-
-  /**
-   * Change the sprite texture
-   *
-   * @memberof Entity
-   */
-  redraw() {
-    const frameName = this.routeFrame();
-    this.sprite.texture = this.textures[frameName];
-  }
-
-  /**
-   * use forward sprite
-   *
-   * @memberof Entity
-   */
-  orient(dir) {
-    if (!dir) return;
-    // this.sprite.scale.x = dir * Game.constants.scale;
-  }
-  /**
    * First draw, creation of the sprite object
    *
    * @param {any} Pixy.loader.Resources
@@ -100,7 +61,7 @@ export default class Entity extends Chubject {
         y: this.opts.pos.y,
       });
       // TODO: find a solution here
-      // this.sprite.anchor.x = 0.5;
+      // this.anchor.x = 0.5;
 
       resolve();
     });

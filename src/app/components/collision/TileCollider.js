@@ -7,7 +7,7 @@ export default class TileCollider {
   }
 
   check(type, cb) {
-    console.log(this.entity.getBounds().x, this.entity.pos.x);
+    console.log(this.entity.getBounds().x, this.entity.x);
     let x1 = this.entity.bounds.left;
     let x2 = this.entity.bounds.right;
     let y1 = this.entity.bounds.top;
@@ -36,12 +36,12 @@ export default class TileCollider {
       matches.forEach((match) => {
         if (this.entity.vel.x > 0) {
           if (this.entity.bounds.right > match.x1) {
-            this.entity.pos.x = match.x1 - this.entity.size.x;
+            this.entity.x = match.x1 - this.entity.size.x;
             this.entity.vel.x = 0;
           }
         } else if (this.entity.vel.x < 0) {
           if (this.entity.bounds.left < match.x2) {
-            this.entity.pos.x = match.x2;
+            this.entity.x = match.x2;
             this.entity.vel.x = 0;
           }
         }
@@ -54,12 +54,12 @@ export default class TileCollider {
       matches.forEach((match) => {
         if (this.entity.vel.y > 0) {
           if (this.entity.bounds.bottom > match.y1) {
-            this.entity.pos.y = match.y1 - this.entity.size.y;
+            this.entity.y = match.y1 - this.entity.size.y;
             this.entity.vel.y = 0;
           }
         } else if (this.entity.vel.y < 0) {
           if (this.entity.bounds.top < match.y2) {
-            this.entity.pos.y = match.y2;
+            this.entity.y = match.y2;
             this.entity.vel.y = 0;
           }
         }

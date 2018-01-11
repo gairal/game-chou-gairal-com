@@ -1,18 +1,16 @@
-import Chubject from '../core/Chubject';
 import Matrix from '../core/Matrix';
 import map from './json/1-1.json';
+import ChuSprite from '../core/ChuSprite';
 
-export default class Level extends Chubject {
+export default class Level {
   constructor(game) {
-    super(game, {
-      tileset: {
-        name: 'level',
-        url: 'assets/json/level.json',
-      },
-    });
+    this.game = game;
+    this.tileset = {
+      name: 'level',
+      url: 'assets/json/level.json',
+    };
 
     this.map = map;
-    this.sprites = [];
     this.grid = new Matrix();
   }
 
@@ -58,10 +56,12 @@ export default class Level extends Chubject {
           tile.ranges.forEach((range) => {
             const spans = Level.expandRange(range);
             spans.forEach((span) => {
+              const sprite = new ChuSprite(this.game);
+              sprite.render(texture, span);
               this.grid.set(span.x, span.y, {
                 type: tile.type,
+                sprite,
               });
-              this.render(texture, span);
             });
           });
         });

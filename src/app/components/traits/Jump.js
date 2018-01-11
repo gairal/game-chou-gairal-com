@@ -46,7 +46,7 @@ export default class Jump extends Trait {
     // }
 
     if (this.engageTime > 0) {
-      // this.entity.pos.y = -(this.velocity + (Math.abs(this.entity.pos.x) * this.speedBoost));
+      // this.entity.y = -(this.velocity + (Math.abs(this.entity.x) * this.speedBoost));
       this.entity.vel.y -= this.velocity;
       this.engageTime -= delta;
     }

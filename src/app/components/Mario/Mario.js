@@ -49,8 +49,7 @@ export default class Mario extends Entity {
       if (ChuGame.constants.logLevel < Logger.levels.DEBUG) return;
 
       this.vel.set(0, 0);
-      this.pos.x = e.offsetX;
-      this.pos.y = e.offsetY;
+      this.set(e.offsetX, e.offsetY);
     });
 
     return this;
