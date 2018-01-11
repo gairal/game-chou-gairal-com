@@ -71,6 +71,30 @@
 				"x": 0.5,
 				"y": 0.5
 			}
+		},
+		"chance": {
+			"frame": {
+				"x": 384,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 384,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"sourceSize": {
+				"w": 16,
+				"h": 16
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
 		}
 	},
 	"meta": {

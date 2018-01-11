@@ -11,13 +11,11 @@ export default class Go extends Trait {
     };
 
     this.dir = this.DIRS.idle;
-    this.speed = 2;
-    this.acceleration = 400;
-    this.deceleration = 300;
-    this.dragFactor = 1 / 5000;
+    this.acceleration = 0.25;
+    this.deceleration = 0.22;
+    this.dragFactor = 1 / 300;
 
     this.distance = 0;
-    this.heading = 1;
   }
 
   forward() {
@@ -30,37 +28,26 @@ export default class Go extends Trait {
 
   stop() {
     this.dir = this.DIRS.idle;
-    this.entity.vel.x = 0;
+    // this.entity.vel.x = 0;
   }
 
   update(delta) {
-    if (this.dir !== this.DIRS.idle) {
-      this.entity.vel.x += this.dir * this.speed * delta;
+    const absX = Math.abs(this.entity.vel.x);
+
+    if (this.dir) {
+      this.entity.vel.x += this.dir * this.acceleration * delta;
+      this.entity.orient(this.dir);
       this.entity.logPos();
+    } else if (this.entity.vel.x) {
+      const decel = Math.min(absX, this.deceleration * delta);
+      this.entity.vel.x += this.entity.vel.x > 0 ? -decel : decel;
+    } else {
+      this.distance = 0;
     }
 
-    // const absX = Math.abs(this.entity.vel.x);
+    this.entity.vel.x -= this.dragFactor * this.entity.vel.x * absX;
 
-    // if (this.dir !== 0) {
-    //   this.entity.vel.x += this.acceleration * delta * this.dir;
-
-    //   if (this.entity.jump) {
-    //     if (this.entity.jump.falling === false) {
-    //       this.heading = this.dir;
-    //     }
-    //   } else {
-    //     this.heading = this.dir;
-    //   }
-    // } else if (this.entity.vel.x !== 0) {
-    //   const decel = Math.min(absX, this.deceleration * delta);
-    //   this.entity.vel.x += this.entity.vel.x > 0 ? -decel : decel;
-    // } else {
-    //   this.distance = 0;
-    // }
-
-    // const drag = this.dragFactor * this.entity.vel.x * absX;
-    // this.entity.vel.x -= drag;
-
-    // this.distance += absX * delta;
+    this.distance += absX * delta;
+    this.entity.redraw();
   }
 }

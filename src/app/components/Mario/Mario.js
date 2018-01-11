@@ -24,6 +24,15 @@ export default class Mario extends Entity {
     this.addTrait(new Go(this));
     this.addTrait(new Jump(this));
     this.addTrait(new Physics(this));
+    this.addAnim('run', ['run-1', 'run-2', 'run-3'], 15);
+  }
+
+  routeFrame() {
+    if (this.go.dir) {
+      return this.run.resolveFrame(this.go.distance);
+    }
+
+    return 'idle';
   }
 
   init() {
