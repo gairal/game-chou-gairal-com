@@ -1,6 +1,5 @@
 import ChuSprite from './ChuSprite';
 import Vec2 from './Vec2';
-import Animation from './Animation';
 import TileCollider from '../collision/TileCollider';
 
 export default class Entity extends ChuSprite {
@@ -8,28 +7,12 @@ export default class Entity extends ChuSprite {
     super(game, opts);
 
     this.traits = [];
-    this.animations = [];
     this.vel = opts.vel ? new Vec2(opts.vel.x, opts.vel.y) : new Vec2(0, 0);
     this.tileCollider = new TileCollider(this);
   }
 
-  get tileset() {
-    return this.opts.tileset;
-  }
-
-  /**
-   * Add animation on the entity
-   *
-   * @param {any} name
-   * @param {any} frames
-   * @param {any} frameLen
-   * @returns
-   * @memberof Entity
-   */
-  addAnim(name, frames, frameLen) {
-    const anim = new Animation(name, frames, frameLen);
-    this.animations.push(anim);
-    this[name] = anim;
+  get name() {
+    return this.opts.name;
   }
 
   /**
@@ -50,9 +33,8 @@ export default class Entity extends ChuSprite {
    * @returns
    * @memberof Entity
    */
-  draw(res) {
+  draw() {
     return new Promise((resolve) => {
-      this.textures = res[this.tileset.name].textures;
       this.render(this.textures[this.opts.pos.tile], {
         x: this.opts.pos.x,
         y: this.opts.pos.y,

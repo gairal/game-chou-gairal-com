@@ -7,10 +7,7 @@ import ChuGame from '../../ChuGame/ChuGame';
 export default class Mario extends Entity {
   constructor(game) {
     super(game, {
-      tileset: {
-        name: 'mario',
-        url: 'assets/json/mario.json',
-      },
+      name: 'mario',
       pos: {
         x: 4,
         y: 2,

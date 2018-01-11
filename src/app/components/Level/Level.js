@@ -1,17 +1,19 @@
 import Matrix from '../core/Matrix';
 import map from './json/1-1.json';
-import ChuSprite from '../core/ChuSprite';
+import Tile from '../core/Tile';
 
 export default class Level {
   constructor(game) {
     this.game = game;
-    this.tileset = {
-      name: 'level',
-      url: 'assets/json/level.json',
-    };
+    this.name = 'level';
 
     this.map = map;
     this.grid = new Matrix();
+    this.updatables = [];
+  }
+
+  get textures() {
+    return this.game.resources[this.name].textures;
   }
 
   static expandSpan(xStart, xLen, yStart, yLen) {
@@ -42,9 +44,13 @@ export default class Level {
     return null;
   }
 
-  draw(res) {
-    this.textures = res.level.textures;
+  update(delta) {
+    this.updatables.forEach((sprite) => {
+      sprite.redraw(delta);
+    });
+  }
 
+  draw() {
     return new Promise((resolve) => {
       let texture;
       this.map.layers.forEach((layer) => {
@@ -56,12 +62,19 @@ export default class Level {
           tile.ranges.forEach((range) => {
             const spans = Level.expandRange(range);
             spans.forEach((span) => {
-              const sprite = new ChuSprite(this.game);
+              const sprite = new Tile(this.game);
               sprite.render(texture, span);
+
               this.grid.set(span.x, span.y, {
                 type: tile.type,
                 sprite,
               });
+
+              const anim = this.map.animations[tile.name];
+              if (anim) {
+                sprite.addAnim('defaultAnim', anim.frames, anim.frameLen);
+                this.updatables.push(sprite);
+              }
             });
           });
         });
@@ -69,5 +82,11 @@ export default class Level {
 
       resolve();
     });
+  }
+
+  static factory(game) {
+    const level = new Level(game);
+    level.draw();
+    return level;
   }
 }

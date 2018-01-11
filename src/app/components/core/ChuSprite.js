@@ -1,5 +1,6 @@
 import { Sprite, Rectangle, Graphics } from 'pixi.js';
 import Game from '../../ChuGame';
+import Animation from './Animation';
 
 export default class ChuSprite extends Sprite {
   constructor(game, opts) {
@@ -7,6 +8,7 @@ export default class ChuSprite extends Sprite {
 
     this.game = game;
     this.opts = opts;
+    this.animations = [];
 
     if (opts && opts.hitbox) {
       this.hitArea = new Rectangle(
@@ -41,6 +43,14 @@ export default class ChuSprite extends Sprite {
     return this.width * this.anchor.x;
   }
 
+  get tilesetName() {
+    return this.opts.tilesetName || this.opts.name;
+  }
+
+  get textures() {
+    return this.game.resources[this.tilesetName].textures;
+  }
+
   /**
    * Set Sprite position
    *
@@ -59,7 +69,22 @@ export default class ChuSprite extends Sprite {
    * @memberof Entity
    */
   logPos() {
-    this.game.logger.info(this.tileset.name, `| x: ${this.x} - y: ${this.y}`);
+    this.game.logger.info(this.name, `| x: ${this.x} - y: ${this.y}`);
+  }
+
+  /**
+   * Add animation on the sprite
+   *
+   * @param {any} name
+   * @param {any} frames
+   * @param {any} frameLen
+   * @returns
+   * @memberof Entity
+   */
+  addAnim(name, frames, frameLen) {
+    const anim = new Animation(name, frames, frameLen);
+    this.animations.push(anim);
+    this[name] = anim;
   }
 
   /**
@@ -106,9 +131,19 @@ export default class ChuSprite extends Sprite {
    *
    * @memberof Entity
    */
-  redraw() {
-    const frameName = this.routeFrame();
+  redraw(delta) {
+    const frameName = this.routeFrame(delta);
     this.texture = this.textures[frameName];
+  }
+
+  /**
+   * Default
+   *
+   * @returns
+   * @memberof ChuSprite
+   */
+  routeFrame(delta) {
+    return this.defaultAnim.resolveFrame(delta);
   }
 
   /**
