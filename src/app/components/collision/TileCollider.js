@@ -34,12 +34,12 @@ export default class TileCollider {
     this.check('x', (matches) => {
       matches.forEach((match) => {
         if (this.entity.vel.x > 0) {
-          if (this.entity.pos.x + this.entity.size.x > match.x1) {
+          if (this.entity.bounds.right > match.x1) {
             this.entity.pos.x = match.x1 - this.entity.size.x;
             this.entity.vel.x = 0;
           }
         } else if (this.entity.vel.x < 0) {
-          if (this.entity.pos.x < match.x2) {
+          if (this.entity.bounds.left < match.x2) {
             this.entity.pos.x = match.x2;
             this.entity.vel.x = 0;
           }
@@ -52,12 +52,12 @@ export default class TileCollider {
     this.check('y', (matches) => {
       matches.forEach((match) => {
         if (this.entity.vel.y > 0) {
-          if (this.entity.pos.y + this.entity.size.y > match.y1) {
+          if (this.entity.bounds.bottom > match.y1) {
             this.entity.pos.y = match.y1 - this.entity.size.y;
             this.entity.vel.y = 0;
           }
         } else if (this.entity.vel.y < 0) {
-          if (this.entity.pos.y < match.y2) {
+          if (this.entity.bounds.top < match.y2) {
             this.entity.pos.y = match.y2;
             this.entity.vel.y = 0;
           }
