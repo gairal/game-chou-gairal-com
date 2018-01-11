@@ -11,6 +11,13 @@ function handleError(err) {
   this.emit('end');
 }
 
+gulp.task('js:lint', function() {
+  'use strict';
+  return gulp.src([conf.base.src + conf.path.js + conf.files.js])
+  .pipe(eslint({configFile: './.eslintrc'}))
+  .pipe(eslint.format());
+});
+
 gulp.task('js:build', function() {
   'use strict';
   return gulp.src([conf.base.src + conf.path.js + conf.files.js])

@@ -10,6 +10,21 @@ function handleError(err) {
   this.emit('end');
 }
 
+gulp.task('sass:lint', function () {
+  'use strict';
+
+  return gulp.src([
+    conf.base.src + conf.path.sass + conf.files.sassAll,
+    '!' + conf.base.src + conf.path.sass + '**/_mixins.scss'
+  ])
+  .pipe(gulpStylelint({
+    reporters: [
+      {formatter: 'string', console: true}
+    ]
+  }))
+  .on('error', handleError);
+});
+
 gulp.task('sass', function () {
   'use strict';
 

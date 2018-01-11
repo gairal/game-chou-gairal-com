@@ -1,5 +1,4 @@
 import ChuSprite from './ChuSprite';
-import Game from '../../ChuGame';
 import Vec2 from './Vec2';
 import Animation from './Animation';
 import TileCollider from '../collision/TileCollider';
