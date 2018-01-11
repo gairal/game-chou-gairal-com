@@ -36,7 +36,7 @@ export default class TileCollider {
       matches.forEach((match) => {
         if (this.entity.vel.x > 0) {
           if (this.entity.bounds.right > match.x1) {
-            this.entity.x = match.x1 - this.entity.size.x;
+            this.entity.x = match.x1 - this.entity.getBounds().width;
             this.entity.vel.x = 0;
           }
         } else if (this.entity.vel.x < 0) {
@@ -54,7 +54,7 @@ export default class TileCollider {
       matches.forEach((match) => {
         if (this.entity.vel.y > 0) {
           if (this.entity.bounds.bottom > match.y1) {
-            this.entity.y = match.y1 - this.entity.size.y;
+            this.entity.y = match.y1 - this.entity.getBounds().height;
             this.entity.vel.y = 0;
           }
         } else if (this.entity.vel.y < 0) {

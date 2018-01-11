@@ -11,7 +11,6 @@ export default class Entity extends ChuSprite {
     this.traits = [];
     this.animations = [];
     this.vel = new Vec2(opts.vel.x, opts.vel.y);
-    this.size = new Vec2(opts.size.x, opts.size.y);
     this.offset = new Vec2(0, 0);
     this.tileCollider = new TileCollider(this);
   }

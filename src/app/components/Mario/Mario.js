@@ -18,7 +18,6 @@ export default class Mario extends Entity {
         tile: 'idle',
       },
       vel: { x: 0, y: 0 },
-      size: { x: 14 * ChuGame.constants.scale, y: 16 * ChuGame.constants.scale },
     });
 
     this.addTrait(new Go(this));
