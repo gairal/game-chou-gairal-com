@@ -17,7 +17,12 @@ export default class Mario extends Entity {
         y: 2,
         tile: 'idle',
       },
-      vel: { x: 0, y: 0 },
+      hitbox: {
+        offsetX: 1,
+        offsetY: 0,
+        width: 14,
+        height: 30,
+      },
     });
 
     this.addTrait(new Go(this));

@@ -7,7 +7,8 @@ export default class TileCollider {
   }
 
   check(type, cb) {
-    // console.log(this.entity.x, this.entity.x);
+    this.entity.updateHitArea();
+    console.log(this.entity.x, this.entity.x, this.entity.left, this.entity.top);
     let x1 = this.entity.left;
     let x2 = this.entity.right;
     let y1 = this.entity.top;

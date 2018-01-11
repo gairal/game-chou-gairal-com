@@ -1,4 +1,4 @@
-import { Sprite } from 'pixi.js';
+import { Sprite, Rectangle, Graphics } from 'pixi.js';
 import Game from '../../ChuGame';
 
 export default class ChuSprite extends Sprite {
@@ -7,6 +7,14 @@ export default class ChuSprite extends Sprite {
 
     this.game = game;
     this.opts = opts;
+
+    if (opts && opts.hitbox) {
+      this.hitArea = new Rectangle(
+        this.x, this.y,
+        opts.hitbox.width * Game.constants.scale,
+        opts.hitbox.height * Game.constants.scale,
+      );
+    }
   }
 
   get app() {
@@ -14,20 +22,36 @@ export default class ChuSprite extends Sprite {
   }
 
   get bottom() {
-    return this.y + this.height + this.offset.y;
+    return this.y + this.height;
   }
 
   get top() {
-    return this.y + this.offset.y;
+    return this.y;
   }
 
   get left() {
-    return this.x + this.offset.x;
+    return this.x;
   }
 
   get right() {
-    return this.x + this.width + this.offset.x;
+    return this.x + this.width;
   }
+
+  // get bottom() {
+  //   return this.hitArea.y + this.hitArea.height;
+  // }
+
+  // get top() {
+  //   return this.hitArea.y;
+  // }
+
+  // get left() {
+  //   return this.hitArea.x;
+  // }
+
+  // get right() {
+  //   return this.hitArea.x + this.hitArea.width;
+  // }
 
   /**
    * Set Sprite position
@@ -48,6 +72,35 @@ export default class ChuSprite extends Sprite {
    */
   logPos() {
     this.game.logger.info(this.tileset.name, `| x: ${this.x} - y: ${this.y}`);
+  }
+
+  /**
+   * Update coordinates of hit area
+   *
+   * @memberof ChuSprite
+   */
+  updateHitArea() {
+    this.hitArea.x = this.x + this.opts.hitbox.offsetX;
+    this.hitArea.y = this.y + this.opts.hitbox.offsetY;
+  }
+
+  /**
+   * Display Hit area
+   *
+   * @memberof ChuSprite
+   */
+  showHit() {
+    if (Game.constants.DEBUG) {
+      if (!this.hitbox) {
+        this.hitbox = new Graphics();
+        this.hitbox.lineStyle(4, 0xFF3300, 1);
+        this.hitbox.drawRect(0, 0, this.hitArea.width, this.hitArea.height);
+        this.app.stage.addChild(this.hitbox);
+      }
+
+      this.hitbox.x = this.hitArea.x;
+      this.hitbox.y = this.hitArea.y;
+    }
   }
 
   /**

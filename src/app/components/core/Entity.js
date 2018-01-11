@@ -9,8 +9,7 @@ export default class Entity extends ChuSprite {
 
     this.traits = [];
     this.animations = [];
-    this.vel = new Vec2(opts.vel.x, opts.vel.y);
-    this.offset = new Vec2(0, 0);
+    this.vel = opts.vel ? new Vec2(opts.vel.x, opts.vel.y) : new Vec2(0, 0);
     this.tileCollider = new TileCollider(this);
   }
 
@@ -59,7 +58,6 @@ export default class Entity extends ChuSprite {
         y: this.opts.pos.y,
       });
 
-      // this.hitArea
       // TODO: find a solution here
       // this.anchor.x = 0.5;
 
