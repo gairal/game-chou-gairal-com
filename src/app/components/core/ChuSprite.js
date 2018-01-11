@@ -110,7 +110,10 @@ export default class ChuSprite extends Sprite {
    */
   orient(dir) {
     if (!dir) return;
-    // this.scale.x = dir * Game.constants.scale;
+    this.scale.x = dir * Game.constants.scale;
+
+    // TODO: remove that
+    this.scale.x = Game.constants.scale;
   }
 
   /**

@@ -1,5 +1,4 @@
 import Entity from '../core/Entity';
-import Logger from '../core/Logger';
 import Physics from '../traits/Physics';
 import Go from '../traits/Go';
 import Jump from '../traits/Jump';
