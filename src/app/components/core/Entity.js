@@ -27,6 +27,10 @@ export default class Entity extends Chubject {
     this.sprite.y = y;
   }
 
+  getBounds() {
+    return this.sprite.getBounds();
+  }
+
   /**
    * Add animation on the entity
    *
@@ -79,7 +83,7 @@ export default class Entity extends Chubject {
    */
   orient(dir) {
     if (!dir) return;
-    this.sprite.scale.x = dir * Game.constants.scale;
+    // this.sprite.scale.x = dir * Game.constants.scale;
   }
   /**
    * First draw, creation of the sprite object

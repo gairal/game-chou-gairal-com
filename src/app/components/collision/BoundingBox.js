@@ -27,7 +27,7 @@ export default class BoundingBox {
   }
 
   get left() {
-    return this.entity.pos.x + this.entity.offset.x;
+    return this.entity.getBounds().x + this.entity.offset.x;
   }
 
   set left(x) {
@@ -35,7 +35,7 @@ export default class BoundingBox {
   }
 
   get right() {
-    return this.entity.pos.x + this.entity.size.x + this.entity.offset.x;
+    return this.entity.getBounds().x + this.entity.size.x + this.entity.offset.x;
   }
 
   set right(x) {

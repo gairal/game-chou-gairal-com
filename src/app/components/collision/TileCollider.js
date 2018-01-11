@@ -7,6 +7,7 @@ export default class TileCollider {
   }
 
   check(type, cb) {
+    console.log(this.entity.getBounds().x, this.entity.pos.x);
     let x1 = this.entity.bounds.left;
     let x2 = this.entity.bounds.right;
     let y1 = this.entity.bounds.top;
