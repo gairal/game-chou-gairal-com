@@ -17,8 +17,8 @@ export default class Mario extends Entity {
         tile: 'idle',
       },
       hitbox: {
-        width: 20, // 14
-        height: 20, // 16
+        width: 14, // 14
+        height: 16, // 16
       },
     });
 

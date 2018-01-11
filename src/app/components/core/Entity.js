@@ -57,9 +57,7 @@ export default class Entity extends ChuSprite {
         x: this.opts.pos.x,
         y: this.opts.pos.y,
       });
-
-      // TODO: find a solution here
-      // this.anchor.x = 0.5;
+      this.anchor.x = 0.5;
 
       resolve();
     });

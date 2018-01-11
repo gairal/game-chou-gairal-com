@@ -36,12 +36,12 @@ export default class TileCollider {
       matches.forEach((match) => {
         if (this.entity.vel.x > 0) {
           if (this.entity.right > match.x1) {
-            this.entity.x = match.x1 - this.entity.hitArea.width;
+            this.entity.x = (match.x1 - this.entity.hitArea.width) + this.entity.offsetX;
             this.entity.vel.x = 0;
           }
         } else if (this.entity.vel.x < 0) {
           if (this.entity.left < match.x2) {
-            this.entity.x = match.x2;
+            this.entity.x = match.x2 + this.entity.offsetX;
             this.entity.vel.x = 0;
           }
         }
