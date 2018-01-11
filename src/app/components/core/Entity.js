@@ -58,6 +58,8 @@ export default class Entity extends ChuSprite {
         x: this.opts.pos.x,
         y: this.opts.pos.y,
       });
+
+      // this.hitArea
       // TODO: find a solution here
       // this.anchor.x = 0.5;
 

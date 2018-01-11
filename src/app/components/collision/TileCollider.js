@@ -7,11 +7,11 @@ export default class TileCollider {
   }
 
   check(type, cb) {
-    console.log(this.entity.getBounds().x, this.entity.x);
-    let x1 = this.entity.bounds.left;
-    let x2 = this.entity.bounds.right;
-    let y1 = this.entity.bounds.top;
-    let y2 = this.entity.bounds.bottom;
+    // console.log(this.entity.x, this.entity.x);
+    let x1 = this.entity.left;
+    let x2 = this.entity.right;
+    let y1 = this.entity.top;
+    let y2 = this.entity.bottom;
 
     switch (type) {
       case 'x':
@@ -35,12 +35,12 @@ export default class TileCollider {
     this.check('x', (matches) => {
       matches.forEach((match) => {
         if (this.entity.vel.x > 0) {
-          if (this.entity.bounds.right > match.x1) {
-            this.entity.x = match.x1 - this.entity.getBounds().width;
+          if (this.entity.right > match.x1) {
+            this.entity.x = match.x1 - this.entity.width;
             this.entity.vel.x = 0;
           }
         } else if (this.entity.vel.x < 0) {
-          if (this.entity.bounds.left < match.x2) {
+          if (this.entity.left < match.x2) {
             this.entity.x = match.x2;
             this.entity.vel.x = 0;
           }
@@ -53,12 +53,12 @@ export default class TileCollider {
     this.check('y', (matches) => {
       matches.forEach((match) => {
         if (this.entity.vel.y > 0) {
-          if (this.entity.bounds.bottom > match.y1) {
-            this.entity.y = match.y1 - this.entity.getBounds().height;
+          if (this.entity.bottom > match.y1) {
+            this.entity.y = match.y1 - this.entity.height;
             this.entity.vel.y = 0;
           }
         } else if (this.entity.vel.y < 0) {
-          if (this.entity.bounds.top < match.y2) {
+          if (this.entity.top < match.y2) {
             this.entity.y = match.y2;
             this.entity.vel.y = 0;
           }

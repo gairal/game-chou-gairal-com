@@ -1,6 +1,5 @@
 import { Sprite } from 'pixi.js';
 import Game from '../../ChuGame';
-import BoundingBox from '../collision/BoundingBox';
 
 export default class ChuSprite extends Sprite {
   constructor(game, opts) {
@@ -8,11 +7,26 @@ export default class ChuSprite extends Sprite {
 
     this.game = game;
     this.opts = opts;
-    this.bounds = new BoundingBox(this);
   }
 
   get app() {
     return this.game.app;
+  }
+
+  get bottom() {
+    return this.y + this.height + this.offset.y;
+  }
+
+  get top() {
+    return this.y + this.offset.y;
+  }
+
+  get left() {
+    return this.x + this.offset.x;
+  }
+
+  get right() {
+    return this.x + this.width + this.offset.x;
   }
 
   /**
