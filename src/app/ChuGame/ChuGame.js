@@ -32,7 +32,7 @@ export default class ChuGame {
       gravity: 0.5,
       hasGravity: true,
       logLevel: Logger.levels.LOG,
-      DEBUG: true,
+      DEBUG: false,
     };
   }
 
@@ -51,8 +51,8 @@ export default class ChuGame {
             name: 'level',
             url: 'assets/json/level.json',
           }, {
-            name: 'mario',
-            url: 'assets/json/mario.json',
+            name: 'pb',
+            url: 'assets/json/pb-lg.json',
           },
         ])
         .on('progress', loader => this.progress.progress(loader))

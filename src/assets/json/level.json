@@ -2,16 +2,16 @@
 	"frames": {
 		"ground": {
 			"frame": {
-				"x": 0,
-				"y": 0,
+				"x": 176,
+				"y": 128,
 				"w": 16,
 				"h": 16
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
-				"x": 0,
-				"y": 0,
+				"x": 176,
+				"y": 128,
 				"w": 16,
 				"h": 16
 			},

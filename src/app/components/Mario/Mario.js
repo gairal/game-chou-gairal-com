@@ -7,15 +7,15 @@ import ChuGame from '../../ChuGame/ChuGame';
 export default class Mario extends Entity {
   constructor(game) {
     super(game, {
-      name: 'mario',
+      name: 'pb',
       pos: {
         x: 4,
         y: 2,
         tile: 'idle',
       },
       hitbox: {
-        width: 14, // 14
-        height: 16, // 16
+        width: 16, // 14
+        height: 32, // 16
       },
     });
 

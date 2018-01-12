@@ -31,6 +31,7 @@ gulp.task('watch', function () {
   'use strict';
   gulp.watch(conf.base.src + conf.path.sass + conf.files.sassAll, ['sass', browserSync.reload]);
   gulp.watch(conf.base.src + conf.path.js + conf.files.js, ['js:build', browserSync.reload]);
+  gulp.watch(conf.base.src + conf.path.js + conf.files.json, ['js:build', browserSync.reload]);
   gulp.watch(conf.base.src + conf.files.pug, ['pug:build', browserSync.reload]);
   gulp.watch(conf.base.src + conf.path.json + conf.files.json, ['copy:build', browserSync.reload]);
 });

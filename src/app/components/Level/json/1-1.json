@@ -367,7 +367,7 @@
   ],
   "animations": {
     "chance": {
-      "frameLen": 0.12,
+      "frameLen": 8,
       "frames": [
         "chance-1",
         "chance-1",

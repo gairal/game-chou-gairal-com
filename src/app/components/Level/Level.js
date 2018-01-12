@@ -6,6 +6,7 @@ export default class Level {
   constructor(game) {
     this.game = game;
     this.name = 'level';
+    this.totalTime = 0;
 
     this.map = map;
     this.grid = new Matrix();
@@ -46,8 +47,10 @@ export default class Level {
 
   update(delta) {
     this.updatables.forEach((sprite) => {
-      sprite.redraw(delta);
+      sprite.redraw(this.totalTime);
     });
+
+    this.totalTime += delta;
   }
 
   draw() {
