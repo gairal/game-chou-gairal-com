@@ -49,7 +49,7 @@ export default class ChuGame {
         .add([
           {
             name: 'level',
-            url: 'assets/json/level.json',
+            url: 'assets/json/minecraft.json',
           }, {
             name: 'pb',
             url: 'assets/json/pb-lg.json',
