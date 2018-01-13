@@ -70,8 +70,8 @@ export default class Compositor {
     Promise.all([
       this.level = Level.factory(this.game),
       new Promise((resolve) => {
-        this.addEntity(Pb.factory(this.game));
         this.addEntity(Finn.factory(this.game));
+        this.addEntity(Pb.factory(this.game));
         this.entities.forEach(entity => entity.draw());
         resolve();
       }),

@@ -6,6 +6,6 @@ export default class Progress {
 
   progress(loader) {
     this.$progressBar.value = loader.progress;
-    if (loader.progress === 100) this.$section.classList.add('hidden');
+    if (loader.progress >= 100) this.$section.classList.add('hidden');
   }
 }

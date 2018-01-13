@@ -15,7 +15,7 @@ export default class Pb extends Entity {
       },
       hitbox: {
         width: 16, // 14
-        height: 32, // 16
+        height: 30, // 16
       },
     });
 
