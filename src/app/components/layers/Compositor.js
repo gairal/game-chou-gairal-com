@@ -38,6 +38,9 @@ export default class Compositor {
           }, {
             name: 'pb',
             url: 'assets/json/pb-lg.json',
+          }, {
+            name: 'finn',
+            url: 'assets/json/finn.json',
           },
         ])
         .on('progress', loader => this.progress.progress(loader))
