@@ -10,10 +10,15 @@ export default class Go extends Trait {
       backward: -1,
     };
 
+    this.DRAGS = {
+      walk: 1 / 50,
+      run: 1 / 300,
+    }
+
     this.dir = this.DIRS.idle;
     this.acceleration = 0.30;
     this.deceleration = 0.40;
-    this.dragFactor = 1 / 300;
+    this.dragFactor = this.DRAGS.walk;
 
     this.distance = 0;
   }
@@ -37,7 +42,7 @@ export default class Go extends Trait {
 
     if (this.dir) {
       this.entity.vel.x += this.dir * this.acceleration * delta;
-      this.entity.orient(this.dir);
+      if (!this.entity.jump || this.entity.jump.falling) this.entity.orient(this.dir);
       this.entity.logPos();
     } else if (this.entity.vel.x) {
       const decel = Math.min(absX, this.deceleration * delta);

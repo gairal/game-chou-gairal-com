@@ -1,6 +1,6 @@
 import Progress from './Progress';
 import Level from './Level';
-import Pb from './Pb';
+import Pb from './entities/Pb';
 import Finn from './entities/Finn';
 
 export default class Compositor {

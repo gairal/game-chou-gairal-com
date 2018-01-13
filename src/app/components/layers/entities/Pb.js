@@ -49,11 +49,25 @@ export default class Pb extends Entity {
           else this.go.stop(this.go.DIRS.forward);
         },
       },
+      // {
+      //   key: 'KeyP',
+      //   handler: (keyState) => {
+      //     console.log('tets');
+      //     if (keyState) this.jump.start();
+      //     else this.jump.cancel();
+      //   },
+      // },
       {
-        key: 'KeyP',
+        key: 'Space',
         handler: (keyState) => {
           if (keyState) this.jump.start();
           else this.jump.cancel();
+        },
+      },
+      {
+        key: 'KeyO',
+        handler: (keyState) => {
+          this.go.dragFactor = keyState ? this.go.DRAGS.run : this.go.DRAGS.walk;
         },
       },
     ].forEach((k) => {
