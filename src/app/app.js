@@ -5,7 +5,7 @@ import ChuGame from './ChuGame';
 const init = () => {
   // COMPONENT CREATION
   const game = ChuGame.factory();
-  window.addEventListener('resize', () => game.app.renderer.resize(window.innerWidth, window.innerHeight));
+  window.addEventListener('resize', () => game.updateRendererSize());
 };
 
 

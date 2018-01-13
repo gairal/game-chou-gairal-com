@@ -1,8 +1,8 @@
-import Entity from '../core/Entity';
-import Physics from '../traits/Physics';
-import Go from '../traits/Go';
-import Jump from '../traits/Jump';
-import ChuGame from '../../ChuGame/ChuGame';
+import Entity from '../../core/Entity';
+import Physics from '../../traits/Physics';
+import Go from '../../traits/Go';
+import Jump from '../../traits/Jump';
+import ChuGame from '../../../ChuGame/ChuGame';
 
 export default class Mario extends Entity {
   constructor(game) {

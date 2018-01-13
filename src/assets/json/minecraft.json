@@ -72,6 +72,30 @@
 				"y": 0.5
 			}
 		},
+		"water": {
+			"frame": {
+				"x": 480,
+				"y": 384,
+				"w": 32,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 480,
+				"y": 384,
+				"w": 32,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 32,
+				"h": 32
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
 		"bricks": {
 			"frame": {
 				"x": 224,
@@ -108,6 +132,30 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 160,
+				"w": 32,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 32,
+				"h": 32
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"chocolate": {
+			"frame": {
+				"x": 0,
+				"y": 384,
+				"w": 32,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 384,
 				"w": 32,
 				"h": 32
 			},

@@ -1,26 +1,22 @@
 import { Application } from 'pixi.js';
 import Logger from '../components/core/Logger';
-import Progress from '../components/Progress';
 import Input from '../components/core/Input';
-import Level from '../components/Level';
-import Mario from '../components/Mario';
+import Camera from '../components/Camera';
+import Compositor from '../components/layers/Compositor';
 
 export default class ChuGame {
   constructor() {
-    this.app = new Application({
-      width: window.innerWidth,
-      height: window.innerHeight,
-      antialias: true,
-      resolution: 1,
-    });
+    this.app = new Application();
+    this.updateRendererSize();
     this.app.renderer.view.style.position = 'absolute';
     this.app.renderer.view.style.display = 'block';
+    this.app.renderer.backgroundColor = 0x56d3ff;
     this.app.renderer.autoResize = true;
 
     // default stuff
+    this.compositor = new Compositor(this);
+    this.camera = new Camera(this);
     this.input = Input.factory();
-    this.progress = new Progress();
-    this.entities = [];
 
     this.logger = new Logger({ level: ChuGame.constants.logLevel });
   }
@@ -29,58 +25,19 @@ export default class ChuGame {
     return {
       unit: 16,
       scale: 2,
-      gravity: 0.5,
+      gravity: 0.8,
       hasGravity: true,
       logLevel: Logger.levels.LOG,
       DEBUG: false,
     };
   }
 
-
-  /**
-   * Laod all spritesheets
-   *
-   * @returns Promise
-   * @memberof ChuGame
-   */
-  load() {
-    return new Promise((resolve) => {
-      this.app.loader
-        .add([
-          {
-            name: 'level',
-            url: 'assets/json/minecraft.json',
-          }, {
-            name: 'pb',
-            url: 'assets/json/pb-lg.json',
-          },
-        ])
-        .on('progress', loader => this.progress.progress(loader))
-        .load((loader, resources) => resolve(resources));
-    });
-  }
-
-  /**
-   * Start the game
-   *
-   * @param {PIXI.loaders.Resource} res
-   * @memberof ChuGame
-   */
-  start(res) {
-    this.resources = res;
-    Promise.all([
-      this.level = Level.factory(this),
-      new Promise((resolve) => {
-        this.entities.push(Mario.factory(this));
-        this.entities.forEach(entity => entity.draw());
-        resolve();
-      }),
-    ]).then(() => {
-      this.app.ticker.add((delta) => {
-        this.level.update(delta);
-        this.entities.forEach(entity => entity.update(delta));
-      });
-    });
+  updateRendererSize() {
+    const maxHeight = 15 * ChuGame.constants.unit * ChuGame.constants.scale;
+    this.app.renderer.resize(
+      window.innerWidth,
+      window.innerHeight < maxHeight ? window.innerHeight : maxHeight,
+    );
   }
 
   /**
@@ -90,7 +47,8 @@ export default class ChuGame {
    * @memberof ChuGame
    */
   init() {
-    this.load().then(res => this.start(res));
+    this.compositor.init();
+    // this.compositor.load().then(res => this.start(res));
     document.body.appendChild(this.app.view);
 
     return this;

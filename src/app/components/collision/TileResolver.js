@@ -23,8 +23,14 @@ export default class TileResolver {
   }
 
   get(x, y) {
-    const tile = this.matrix.get(x, y);
-    if (!tile) return undefined;
+    let tile = this.matrix.get(x, y);
+    // if (!tile) return undefined;
+    if (!tile) {
+      // If we are inside the Level scene return
+      if (x >= 0 && x < this.matrix.width) return undefined;
+      tile = { type: 'hard' };
+    }
+
     return {
       tile,
       x1: x * this.tileSize,

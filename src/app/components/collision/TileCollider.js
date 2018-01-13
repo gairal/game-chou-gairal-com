@@ -3,7 +3,7 @@ import TileResolver from './TileResolver';
 export default class TileCollider {
   constructor(entity) {
     this.entity = entity;
-    this.tiles = new TileResolver(entity.game.level.grid);
+    this.tiles = new TileResolver(entity.game.compositor.level.grid);
   }
 
   check(type, cb) {
