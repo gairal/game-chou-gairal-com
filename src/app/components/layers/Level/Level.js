@@ -129,22 +129,24 @@ export default class Level {
   expandTile(tile, offsetX, offsetY) {
     if (!tile.name && !tile.pattern) return;
 
+    let metMeth;
+
     if (tile.name) {
       const texture = this.textures[tile.name];
       if (!texture && tile.name !== 'void') return;
 
-      tile.ranges
-        .forEach(range => Level.expandRange(range, offsetX, offsetY)
-          .forEach(span => this.renderTile(tile, span, texture)));
-    } else if (tile.pattern) {
-      this.map.patterns[tile.pattern].tiles.forEach((t) => {
-        if (!t.offset) return;
-        this.expandTile({
-          name: t.name,
-          ranges: tile.ranges,
-        }, t.offset.x, t.offset.y);
-      });
+      metMeth = range => Level.expandRange(range, offsetX, offsetY)
+        .forEach(span => this.renderTile(tile, span, texture));
+    } else {
+      const { tiles } = this.map.patterns[tile.pattern];
+      metMeth = range => this.expandTiles(tiles, range[0] + offsetX, range[1] + offsetY);
     }
+
+    tile.ranges.forEach(metMeth);
+  }
+
+  expandTiles(tiles, offsetX = 0, offsetY = 0) {
+    tiles.forEach(tile => this.expandTile(tile, offsetX, offsetY));
   }
 
   /**
@@ -156,7 +158,7 @@ export default class Level {
   draw() {
     return new Promise((resolve) => {
       this.map.layers
-        .forEach(layer => layer.tiles.forEach(tile => this.expandTile(tile)));
+        .forEach(layer => this.expandTiles(layer.tiles));
       resolve();
     });
   }

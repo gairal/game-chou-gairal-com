@@ -3,7 +3,11 @@
 ---
 
 ### TODO
-- [ ] Unit Testing with Mocha
+- [ ] Add fine
+- Add a code on the loader
+- Add a title
+- Let here die
+-
 
 ---
 

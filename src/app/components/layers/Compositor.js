@@ -1,6 +1,7 @@
 import Progress from './Progress';
 import Level from './Level';
-import Mario from './Mario';
+import Pb from './Pb';
+import Finn from './entities/Finn';
 
 export default class Compositor {
   constructor(game) {
@@ -14,6 +15,11 @@ export default class Compositor {
 
   get app() {
     return this.game.app;
+  }
+
+  addEntity(entity) {
+    this[entity.name] = entity;
+    this.entities.push(entity);
   }
 
   /**
@@ -61,8 +67,8 @@ export default class Compositor {
     Promise.all([
       this.level = Level.factory(this.game),
       new Promise((resolve) => {
-        this.mario = Mario.factory(this.game);
-        this.entities.push(this.mario);
+        this.addEntity(Pb.factory(this.game));
+        this.addEntity(Finn.factory(this.game));
         this.entities.forEach(entity => entity.draw());
         resolve();
       }),
