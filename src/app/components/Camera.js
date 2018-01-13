@@ -21,11 +21,14 @@ export default class Camera {
   }
 
   update() {
-    const center = this.center;
-    const posX = this.game.compositor.pb.x;
-    const endX = this.stage.width - center;
-    if (posX !== this.prevPosX && (posX < center || posX > endX)) return;
-    this.stage.pivot.x = posX;
+    const {
+      center, prevPosX,
+      game, stage,
+    } = this;
+    const posX = game.compositor.pb.x;
+    const endX = stage.width - center;
+    if (posX !== prevPosX && (posX < center || posX > endX)) return;
+    stage.pivot.x = posX;
     this.prevPosX = posX;
   }
 
