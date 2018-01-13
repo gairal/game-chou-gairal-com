@@ -18,7 +18,8 @@ export default class Camera {
 
   update() {
     const posX = this.game.compositor.mario.x;
-    if (posX < this.center && posX !== this.prevPosX) return;
+    const endX = this.stage.width - this.center;
+    if (posX !== this.prevPosX && (posX < this.center || posX > endX)) return;
     this.stage.pivot.x = posX;
     this.prevPosX = posX;
   }

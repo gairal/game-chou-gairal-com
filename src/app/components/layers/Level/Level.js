@@ -6,6 +6,7 @@ export default class Level {
   constructor(game) {
     this.game = game;
     this.name = 'level';
+    this.textures = this.game.resources[this.name].textures;
     this.totalTime = 0;
 
     this.map = map;
@@ -13,10 +14,17 @@ export default class Level {
     this.updatables = [];
   }
 
-  get textures() {
-    return this.game.resources[this.name].textures;
-  }
-
+  /**
+   * Return an array coresponding to coordinates of a range
+   *
+   * @static
+   * @param {any} xStart
+   * @param {any} xLen
+   * @param {any} yStart
+   * @param {any} yLen
+   * @returns
+   * @memberof Level
+   */
   static expandSpan(xStart, xLen, yStart, yLen) {
     const xEnd = xStart + xLen;
     const yEnd = yStart + yLen;
@@ -30,7 +38,16 @@ export default class Level {
     return res;
   }
 
-  static expandRange(range) {
+  /**
+   * Expand a range given in the format
+   * [x, width, y, height]
+   *
+   * @static
+   * @param {any} range
+   * @returns
+   * @memberof Level
+   */
+  static expandRange(range, offsetX = 0, offsetY = 0) {
     let xStart;
     let xLen;
     let yStart;
@@ -47,22 +64,24 @@ export default class Level {
       yLen = 1;
     }
 
+    xStart += offsetX;
+    yStart += offsetY;
+
     return Level.expandSpan(xStart, xLen, yStart, yLen);
   }
 
+  /**
+   * Resets a tile in the grid and destroys its sprite
+   *
+   * @param {any} x
+   * @param {any} y
+   * @memberof Level
+   */
   resetTile(x, y) {
     const { sprite } = this.grid.get(x, y);
     this.grid.set(x, y);
 
     this.game.app.stage.removeChild(sprite);
-  }
-
-  update(delta) {
-    this.updatables.forEach((sprite) => {
-      sprite.redraw(this.totalTime);
-    });
-
-    this.totalTime += delta;
   }
 
   /**
@@ -73,7 +92,7 @@ export default class Level {
    * @param {any} span
    * @memberof Level
    */
-  renderTile(texture, tile, span) {
+  renderTile(tile, span, texture) {
     if (tile.name === 'void') {
       this.resetTile(span.x, span.y);
     } else {
@@ -93,21 +112,51 @@ export default class Level {
     }
   }
 
+  /**
+   * Run at each tick
+   *
+   * @param {any} delta
+   * @memberof Level
+   */
+  update(delta) {
+    this.updatables.forEach((sprite) => {
+      sprite.redraw(this.totalTime);
+    });
+
+    this.totalTime += delta;
+  }
+
+  expandTile(tile, offsetX, offsetY) {
+    if (!tile.name && !tile.pattern) return;
+
+    if (tile.name) {
+      const texture = this.textures[tile.name];
+      if (!texture && tile.name !== 'void') return;
+
+      tile.ranges
+        .forEach(range => Level.expandRange(range, offsetX, offsetY)
+          .forEach(span => this.renderTile(tile, span, texture)));
+    } else if (tile.pattern) {
+      this.map.patterns[tile.pattern].tiles.forEach((t) => {
+        if (!t.offset) return;
+        this.expandTile({
+          name: t.name,
+          ranges: tile.ranges,
+        }, t.offset.x, t.offset.y);
+      });
+    }
+  }
+
+  /**
+   * First rendering
+   *
+   * @returns
+   * @memberof Level
+   */
   draw() {
     return new Promise((resolve) => {
-      let texture;
-      this.map.layers.forEach((layer) => {
-        layer.tiles.forEach((tile) => {
-          if (!tile.name
-           || (!tile.name === 'void' && this.textures.indexOf(tile.name) <= -1)) return;
-          texture = this.textures[tile.name];
-
-          tile.ranges
-            .forEach(range => Level.expandRange(range)
-              .forEach(span => this.renderTile(texture, tile, span)));
-        });
-      });
-
+      this.map.layers
+        .forEach(layer => layer.tiles.forEach(tile => this.expandTile(tile)));
       resolve();
     });
   }
