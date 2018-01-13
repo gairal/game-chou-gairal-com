@@ -2,6 +2,7 @@ import Entity from '../../core/Entity';
 import Physics from '../../traits/Physics';
 import Go from '../../traits/Go';
 import Jump from '../../traits/Jump';
+import Hack from '../../traits/Hack';
 import ChuGame from '../../../ChuGame/ChuGame';
 
 export default class Pb extends Entity {
@@ -22,6 +23,9 @@ export default class Pb extends Entity {
     this.addTrait(new Go(this));
     this.addTrait(new Jump(this));
     this.addTrait(new Physics(this));
+    if (ChuGame.constants.DEBUG) {
+      this.addTrait(new Hack(this));
+    }
     this.addAnim('run', ['run-1', 'run-2', 'run-3'], 15);
   }
 

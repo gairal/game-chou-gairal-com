@@ -13,7 +13,7 @@ export default class Go extends Trait {
     this.DRAGS = {
       walk: 1 / 50,
       run: 1 / 300,
-    }
+    };
 
     this.dir = this.DIRS.idle;
     this.acceleration = 0.30;
