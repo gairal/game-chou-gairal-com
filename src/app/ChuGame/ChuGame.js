@@ -7,7 +7,6 @@ import Compositor from '../components/layers/Compositor';
 export default class ChuGame {
   constructor() {
     this.app = new Application();
-    this.updateRendererSize();
     this.app.renderer.view.style.position = 'absolute';
     this.app.renderer.view.style.display = 'block';
     this.app.renderer.backgroundColor = 0x56d3ff;
@@ -19,6 +18,7 @@ export default class ChuGame {
     this.input = Input.factory();
 
     this.logger = new Logger({ level: ChuGame.constants.logLevel });
+    this.resize();
   }
 
   static get constants() {
@@ -32,12 +32,13 @@ export default class ChuGame {
     };
   }
 
-  updateRendererSize() {
+  resize() {
     const maxHeight = 15 * ChuGame.constants.unit * ChuGame.constants.scale;
     this.app.renderer.resize(
       window.innerWidth,
       window.innerHeight < maxHeight ? window.innerHeight : maxHeight,
     );
+    this.camera.resize();
   }
 
   /**

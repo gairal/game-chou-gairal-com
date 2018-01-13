@@ -19,19 +19,21 @@ export default class Go extends Trait {
   }
 
   forward() {
-    this.dir = this.DIRS.forward;
+    if (this.dir === this.DIRS.forward) return;
+    this.dir += this.DIRS.forward;
   }
 
   backward() {
-    this.dir = this.DIRS.backward;
+    if (this.dir === this.DIRS.backward) return;
+    this.dir += this.DIRS.backward;
   }
 
-  stop() {
-    this.dir = this.DIRS.idle;
-    // this.entity.vel.x = 0;
+  stop(dir) {
+    this.dir += dir;
   }
 
   update(delta) {
+    // console.log(this.dir);
     const absX = Math.abs(this.entity.vel.x);
 
     if (this.dir) {

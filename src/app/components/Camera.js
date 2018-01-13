@@ -16,10 +16,15 @@ export default class Camera {
     return this.renderer.width / 2;
   }
 
+  resize() {
+    this.stage.position.x = this.center;
+  }
+
   update() {
+    const center = this.center;
     const posX = this.game.compositor.pb.x;
-    const endX = this.stage.width - this.center;
-    if (posX !== this.prevPosX && (posX < this.center || posX > endX)) return;
+    const endX = this.stage.width - center;
+    if (posX !== this.prevPosX && (posX < center || posX > endX)) return;
     this.stage.pivot.x = posX;
     this.prevPosX = posX;
   }

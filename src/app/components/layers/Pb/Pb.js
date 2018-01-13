@@ -34,13 +34,30 @@ export default class Pb extends Entity {
   }
 
   init() {
-    this.game.input.addKey('ArrowRight', () => this.go.forward(), () => this.go.stop());
-    this.game.input.addKey('ArrowLeft', () => this.go.backward(), () => this.go.stop());
-
-    this.game.input.addKey('Space', () => {
-      this.jump.start();
-    }, () => {
-      this.jump.cancel();
+    [
+      {
+        key: 'KeyD',
+        handler: (keyState) => {
+          if (keyState) this.go.forward();
+          else this.go.stop(this.go.DIRS.backward);
+        },
+      },
+      {
+        key: 'KeyA',
+        handler: (keyState) => {
+          if (keyState) this.go.backward();
+          else this.go.stop(this.go.DIRS.forward);
+        },
+      },
+      {
+        key: 'KeyP',
+        handler: (keyState) => {
+          if (keyState) this.jump.start();
+          else this.jump.cancel();
+        },
+      },
+    ].forEach((k) => {
+      this.game.input.addKey(k.key, k.handler);
     });
 
     this.game.input.addClick(1, (e) => {
