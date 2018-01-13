@@ -1,4 +1,5 @@
 import TileResolver from './TileResolver';
+import Sides from '../core/Sides';
 
 export default class TileCollider {
   constructor(entity) {
@@ -56,6 +57,7 @@ export default class TileCollider {
           if (this.entity.bottom > match.y1) {
             this.entity.y = match.y1 - this.entity.hitArea.height;
             this.entity.vel.y = 0;
+            this.entity.obstruct(Sides.BOTTOM);
           }
         } else if (this.entity.vel.y < 0) {
           if (this.entity.top < match.y2) {

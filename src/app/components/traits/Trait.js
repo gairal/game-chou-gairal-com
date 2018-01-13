@@ -18,11 +18,13 @@ export default class Trait {
 
   // }
 
-  // obstruct() {
+  /* eslint-disable class-methods-use-this */
+  obstruct() {
+    return this.NAME;
+  }
 
-  // }
-
-  // update() {
-
-  // }
+  update() {
+    return this.NAME;
+  }
+  /* eslint-disable class-methods-use-this */
 }

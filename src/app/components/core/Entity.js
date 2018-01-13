@@ -45,6 +45,12 @@ export default class Entity extends ChuSprite {
     });
   }
 
+  obstruct(side) {
+    this.traits.forEach((trait) => {
+      trait.obstruct(side);
+    });
+  }
+
   /**
    * Update the entity each frame
    *

@@ -11,8 +11,8 @@ export default class Go extends Trait {
     };
 
     this.dir = this.DIRS.idle;
-    this.acceleration = 0.25;
-    this.deceleration = 0.22;
+    this.acceleration = 0.30;
+    this.deceleration = 0.40;
     this.dragFactor = 1 / 300;
 
     this.distance = 0;
@@ -33,7 +33,6 @@ export default class Go extends Trait {
   }
 
   update(delta) {
-    // console.log(this.dir);
     const absX = Math.abs(this.entity.vel.x);
 
     if (this.dir) {

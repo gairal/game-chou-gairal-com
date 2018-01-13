@@ -26,7 +26,7 @@ export default class Pb extends Entity {
   }
 
   routeFrame() {
-    if (this.go.dir) {
+    if (this.go.distance > 0) {
       return this.run.resolveFrame(this.go.distance);
     }
 
