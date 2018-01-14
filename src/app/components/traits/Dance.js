@@ -1,6 +1,6 @@
 import Trait from './Trait';
 
-export default class Go extends Trait {
+export default class Dance extends Trait {
   constructor(entity) {
     super(entity, 'dance');
 

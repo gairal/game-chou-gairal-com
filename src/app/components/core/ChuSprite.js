@@ -80,6 +80,18 @@ export default class ChuSprite extends Sprite {
   }
 
   /**
+   * Set Sprite position
+   *
+   * @param {any} x
+   * @param {any} y
+   * @memberof ChuSprite
+   */
+  setIndex(x, y) {
+    this.indexX = x;
+    this.indexY = y;
+  }
+
+  /**
    * Log current position (used for debug only)
    *
    * @memberof Entity

@@ -35,7 +35,12 @@ export default class Camera {
     } = this;
     const posX = game.compositor.pb.x;
     const endX = width - center;
-    if (posX !== prevPosX && (posX < center || posX > endX)) return;
+    if (posX === prevPosX || posX > endX) return;
+    if (posX < center) {
+      pivot.x = center;
+      return;
+    }
+
     pivot.x = posX;
     this.prevPosX = posX;
   }

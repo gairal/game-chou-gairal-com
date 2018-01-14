@@ -1,3 +1,4 @@
+import EntityCollider from '../collision/EntityCollider';
 import Progress from './Progress';
 import Level from './Level';
 import Pb from './entities/Pb';
@@ -10,6 +11,7 @@ export default class Compositor {
     this.entities = [];
 
     this.progress = new Progress();
+    this.entityCollider = new EntityCollider(this.entities);
   }
 
   get app() {
@@ -66,7 +68,10 @@ export default class Compositor {
    */
   update(delta) {
     this.level.update(delta);
-    this.entities.forEach(entity => entity.update(delta));
+    this.entities.forEach((entity) => {
+      entity.update(delta);
+      this.entityCollider.check(entity);
+    });
     this.game.camera.update();
   }
 

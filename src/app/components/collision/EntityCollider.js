@@ -4,16 +4,17 @@ export default class EntityCollider {
   }
 
   check(subject) {
-    console.log('ok');
-    // this.entities.forEach((candidate) => {
+    this.entities.forEach((candidate) => {
     //   if (subject === candidate) {
     //     return;
     //   }
 
-    //   if (subject.bounds.overlaps(candidate.bounds)) {
-    //     subject.collides(candidate);
-    //     candidate.collides(subject);
-    //   }
-    // });
+    //   console.log(candidate.name);
+
+      // if (subject.bounds.overlaps(candidate.bounds)) {
+      //   subject.collides(candidate);
+      //   candidate.collides(subject);
+      // }
+    });
   }
 }

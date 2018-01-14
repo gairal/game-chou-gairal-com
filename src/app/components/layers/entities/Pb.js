@@ -2,6 +2,7 @@ import Entity from '../../core/Entity';
 import Physics from '../../traits/Physics';
 import Go from '../../traits/Go';
 import Jump from '../../traits/Jump';
+import Die from '../../traits/Die';
 // import Hack from '../../traits/Hack';
 import ChuGame from '../../../ChuGame/ChuGame';
 
@@ -22,6 +23,7 @@ export default class Pb extends Entity {
 
     this.addTrait(new Go(this));
     this.addTrait(new Jump(this));
+    this.addTrait(new Die(this));
     this.addTrait(new Physics(this));
     if (ChuGame.constants.DEBUG) {
       // this.addTrait(new Hack(this));
@@ -35,6 +37,11 @@ export default class Pb extends Entity {
     }
 
     return 'idle';
+  }
+
+  die() {
+    this.setIndex(this.opts.init.x, this.opts.init.y);
+    console.log('dead');
   }
 
   init() {
@@ -80,7 +87,7 @@ export default class Pb extends Entity {
       if (!ChuGame.constants.DEBUG) return;
 
       this.vel.set(0, 0);
-      const posX = this.game.camera.pivot.x - (this.game.camera.center + e.offsetX);
+      const posX = (this.game.camera.pivot.x - this.game.camera.center) + e.offsetX;
       this.set(posX, e.offsetY);
     });
 

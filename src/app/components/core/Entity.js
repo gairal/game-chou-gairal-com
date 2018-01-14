@@ -63,6 +63,19 @@ export default class Entity extends ChuSprite {
     });
   }
 
+
+  /* eslint-disable class-methods-use-this */
+  /**
+   * Flush entity after being killed
+   *
+   * @returns
+   * @memberof Entity
+   */
+  die() {
+    return this.NAME;
+  }
+  /* eslint-disable class-methods-use-this */
+
   static factory(game) {
     const entity = new this(game);
     if (entity.init) entity.init();

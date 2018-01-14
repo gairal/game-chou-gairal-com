@@ -1,7 +1,7 @@
 import Trait from './Trait';
 import Sides from '../core/Sides';
 
-export default class Go extends Trait {
+export default class Scout extends Trait {
   constructor(entity) {
     super(entity, 'Scout');
 

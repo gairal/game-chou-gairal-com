@@ -1,7 +1,7 @@
 import Trait from './Trait';
 import Finn from '../layers/entities/Finn';
 
-export default class Go extends Trait {
+export default class Hack extends Trait {
   constructor(entity) {
     super(entity, 'hack');
     this.spawnTimeOut = 0;
