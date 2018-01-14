@@ -2,25 +2,48 @@ import Entity from '../../core/Entity';
 import Physics from '../../traits/Physics';
 import Scout from '../../traits/Scout';
 import Killable from '../../traits/Killable';
-import LspBehavior from '../../traits/LspBehavior';
+import Trait from '../../traits/Trait';
 
-export default class Finn extends Entity {
+class Behavior extends Trait {
+  constructor(entity) {
+    super(entity, 'behavior');
+  }
+
+  collides(them) {
+    if (this.entity.killable.dead) return;
+
+    if (them.stomper) {
+      if (them.vel.y > this.entity.vel.y) {
+        this.entity.killable.kill();
+        them.stomper.bounce(this.entity);
+        this.entity.scout.speed = 0;
+      } else {
+        them.killable.kill();
+      }
+    } else {
+      // This doesn't work because they both collides multiple times
+      this.entity.scout.bounce();
+    }
+  }
+}
+
+export default class Lsp extends Entity {
   constructor(game) {
     super(game, {
       name: 'lsp',
-      init: { tile: 'idle' },
+      init: { tile: 'lsp-idle' },
       hitbox: {
         width: 22,
         height: 31,
       },
     });
 
-    [Killable, Scout, Physics, LspBehavior].forEach(type => this.addTrait(type));
+    [Killable, Scout, Physics, Behavior].forEach(type => this.addTrait(type));
   }
 
   routeFrame() {
     if (this.killable.dead) return 'dead';
 
-    return 'idle';
+    return 'lsp-idle';
   }
 }

@@ -1,19 +1,18 @@
-# Front-End Gulp starter
+# Adventure Time Bros.
 
 ---
 
 ### TODO
-- [ ] Add fine
-- Add a code on the loader
-- Add a title
-- Let here die
--
+- [] Add a code on the loader
+- [] Add a title
+- Ep 12 - 48min
 
 ---
 
-> A starter Kit for front-end developer including [Gulp](http://gulpjs.com), [JQuery](https://github.com/jquery/jquery), [Bootstrap 4](https://v4-alpha.getbootstrap.com), [font-awesome](http://fontawesome.io), [Sass](http://sass-lang.com), [Jade](http://jade-lang.com), [Babel](https://babeljs.io), [ES2015](https://babeljs.io/docs/learn-es2015/), [webpack](http://webpack.github.io), [Karma](https://karma-runner.github.io/)
+> Developed with [Gulp](http://gulpjs.com), [PixiJS](http://www.pixijs.com/), [Sass](http://sass-lang.com), [Pug](https://pugjs.org), [Babel](https://babeljs.io), [ES2015](https://babeljs.io/docs/learn-es2015/), [webpack](http://webpack.github.io)
 
-This seed repo is a starter kit for front-end developer that needs an environment allowing them to speed up development while ensuring good practice and overall quality.
+Simple platformer developed as a present.
+Based on PixiJS + [MethMethMethod playlist on youtube](https://www.youtube.com/playlist?list=PLS8HfBXv9ZWWe8zXrViYbIM2Hhylx8DZx)
 
 * Best practice for HTML5, CSS and JavaScript organization
 * Code validation (HTML, JS, CSS)
@@ -63,7 +62,6 @@ gulp-webpack-es2015-stack/
  │   ├──.eslintrc.json               * eslint configuration file
  │   ├──.sass-lint.yml               * sasslint configuration file (Yaml format)
  │   ├──config.json                  * variables used got Gulp tasks
- │   ├──karma.conf.js                * Karma configuration file
  │   └──webpack.conf.js              * Webpack configuration file
  │
  ├──src/                             * our source files that will be compiled to javascript
@@ -102,7 +100,6 @@ You need to install the following on you system
 Then install tools you'll need to run the app
 * sass (`gem install sass`)
 * gulp (`npm install gulp -g`)
-* karma (`npm install karma-cli -g`)
 
 ## Installing
 * `fork` this repo

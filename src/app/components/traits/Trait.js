@@ -15,7 +15,7 @@ export default class Trait {
   }
 
   /* eslint-disable class-methods-use-this */
-  collides(them) {
+  collides() {
     return this.NAME;
   }
 

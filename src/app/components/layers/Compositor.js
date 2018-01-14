@@ -27,9 +27,17 @@ export default class Compositor {
     const entity = type.factory(this.game);
     this.addEntity(entity);
     entity.draw();
+    entity.uuid = Date.now();
 
     if (x) entity.indexX = x;
     if (y) entity.indexY = y;
+  }
+
+  delete(entity) {
+    const index = this.entities.indexOf(entity);
+    if (index > -1) this.entities.splice(index, 1);
+    delete this[entity.name];
+    this.app.stage.removeChild(entity);
   }
 
   /**
@@ -70,6 +78,8 @@ export default class Compositor {
     this.level.update(delta);
     this.entities.forEach((entity) => {
       entity.update(delta);
+    });
+    this.entities.forEach((entity) => {
       this.entityCollider.check(entity);
     });
     this.game.camera.update();

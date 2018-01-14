@@ -1,5 +1,4 @@
 import Trait from './Trait';
-import Game from '../../ChuGame';
 
 export default class Die extends Trait {
   constructor(entity) {
@@ -8,7 +7,7 @@ export default class Die extends Trait {
     this.height = entity.game.app.renderer.height;
   }
 
-  update(delta) {
+  update() {
     // Die if fall in a hole
     if (this.entity.y > this.height) this.entity.die();
   }

@@ -5,7 +5,7 @@ export default class Killable extends Trait {
     super(entity, 'killable');
     this.dead = false;
     this.deadTime = 0;
-    this.removeAfter = 2;
+    this.removeAfter = 50;
   }
 
   kill() {
@@ -21,7 +21,7 @@ export default class Killable extends Trait {
     if (this.dead) {
       this.deadTime += delta;
       if (this.deadTime > this.removeAfter) {
-        // level.delete(entity);
+        this.entity.die();
       }
     }
   }

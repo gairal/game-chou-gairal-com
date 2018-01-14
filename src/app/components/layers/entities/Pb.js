@@ -4,6 +4,7 @@ import Go from '../../traits/Go';
 import Jump from '../../traits/Jump';
 import Die from '../../traits/Die';
 import Stomper from '../../traits/Stomper';
+import Killable from '../../traits/Killable';
 // import Hack from '../../traits/Hack';
 import ChuGame from '../../../ChuGame/ChuGame';
 
@@ -23,15 +24,17 @@ export default class Pb extends Entity {
     });
 
     [
+      Killable,
       Go,
       Jump,
       Die,
       Physics,
-      Stomper
+      Stomper,
     ].forEach(type => this.addTrait(type));
     if (ChuGame.constants.DEBUG) {
       // this.addTrait(Hack);
     }
+    this.killable.removeAfter = 0;
     this.addAnim('run', ['run-1', 'run-2', 'run-3'], 15);
   }
 
@@ -44,8 +47,8 @@ export default class Pb extends Entity {
   }
 
   die() {
+    this.killable.revive();
     this.setIndex(this.opts.init.x, this.opts.init.y);
-    console.log('dead');
   }
 
   init() {

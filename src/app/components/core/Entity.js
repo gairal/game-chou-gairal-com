@@ -90,7 +90,7 @@ export default class Entity extends ChuSprite {
    * @memberof Entity
    */
   die() {
-    return this.NAME;
+    this.game.compositor.delete(this);
   }
   /* eslint-disable class-methods-use-this */
 
