@@ -1,7 +1,6 @@
 import Progress from './Progress';
 import Level from './Level';
 import Pb from './entities/Pb';
-import Finn from './entities/Finn';
 
 export default class Compositor {
   constructor(game) {
@@ -20,6 +19,15 @@ export default class Compositor {
   addEntity(entity) {
     this[entity.name] = entity;
     this.entities.push(entity);
+  }
+
+  stageEntity(type, x, y) {
+    const entity = type.factory(this.game);
+    this.addEntity(entity);
+    entity.draw();
+
+    if (x) entity.indexX = x;
+    if (y) entity.indexY = y;
   }
 
   /**
@@ -41,6 +49,9 @@ export default class Compositor {
           }, {
             name: 'finn',
             url: 'assets/json/finn.json',
+          }, {
+            name: 'lsp',
+            url: 'assets/json/lsp.json',
           },
         ])
         .on('progress', loader => this.progress.progress(loader))
@@ -67,15 +78,12 @@ export default class Compositor {
    */
   start(res) {
     this.game.resources = res;
-    Promise.all([
-      this.level = Level.factory(this.game),
-      new Promise((resolve) => {
-        this.addEntity(Finn.factory(this.game));
-        this.addEntity(Pb.factory(this.game));
-        this.entities.forEach(entity => entity.draw());
-        resolve();
-      }),
-    ]).then(() => {
+    new Promise((resolve) => {
+      this.level = Level.factory(this.game);
+      this.level.loadEntites();
+      this.stageEntity(Pb);
+      resolve();
+    }).then(() => {
       this.game.camera.init();
       this.app.ticker.add(delta => this.update(delta));
     });

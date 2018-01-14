@@ -403,12 +403,12 @@
       ],
       "entities": [
         {
-          "name": "koopa",
-          "pos": [260, 0]
+          "name": "lsp",
+          "pos": [3, 0]
         },
         {
-          "name": "goomba",
-          "pos": [220, 0]
+          "name": "finn",
+          "pos": [200, 10.5]
         }
       ],
       "animations": {

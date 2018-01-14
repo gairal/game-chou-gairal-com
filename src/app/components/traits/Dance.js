@@ -4,7 +4,7 @@ export default class Go extends Trait {
   constructor(entity) {
     super(entity, 'dance');
 
-    this.totalTime = 0;
+    this.totalTime = 2;
   }
 
   forward() {

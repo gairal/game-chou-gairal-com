@@ -5,11 +5,7 @@ export default class Finn extends Entity {
   constructor(game) {
     super(game, {
       name: 'finn',
-      pos: {
-        x: 200,
-        y: 10.5,
-        tile: 'finn-1',
-      },
+      init: { tile: 'finn-1' },
     });
 
     this.addTrait(new Dance(this));

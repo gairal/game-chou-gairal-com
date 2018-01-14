@@ -1,6 +1,8 @@
 import Matrix from '../../core/Matrix';
 import map from './json/1-1.json';
 import Tile from '../../core/Tile';
+import Lsp from '../entities/Lsp';
+import Finn from '../entities/Finn';
 
 export default class Level {
   constructor(game) {
@@ -12,6 +14,11 @@ export default class Level {
     this.map = map;
     this.grid = new Matrix();
     this.updatables = [];
+
+    this.entityMap = {
+      lsp: Lsp,
+      finn: Finn,
+    };
   }
 
   /**
@@ -150,6 +157,17 @@ export default class Level {
   }
 
   /**
+   * Load all vilains !!
+   *
+   * @memberof Level
+   */
+  loadEntites() {
+    this.map.entities
+      .forEach(({ name, pos: [x, y] }) => this.game.compositor
+        .stageEntity(this.entityMap[name], x, y));
+  }
+
+  /**
    * First rendering
    *
    * @returns
@@ -158,7 +176,7 @@ export default class Level {
   draw() {
     return new Promise((resolve) => {
       this.map.layers
-        .forEach(layer => this.expandTiles(layer.tiles));
+        .forEach(({ tiles }) => this.expandTiles(tiles));
       resolve();
     });
   }

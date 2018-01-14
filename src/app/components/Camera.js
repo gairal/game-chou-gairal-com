@@ -8,8 +8,16 @@ export default class Camera {
     return this.game.app.renderer;
   }
 
-  get stage() {
-    return this.game.app.stage;
+  get width() {
+    return this.game.app.stage.width;
+  }
+
+  get pivot() {
+    return this.game.app.stage.pivot;
+  }
+
+  get position() {
+    return this.game.app.stage.position;
   }
 
   get center() {
@@ -17,23 +25,23 @@ export default class Camera {
   }
 
   resize() {
-    this.stage.position.x = this.center;
+    this.position.x = this.center;
   }
 
   update() {
     const {
       center, prevPosX,
-      game, stage,
+      game, width, pivot,
     } = this;
     const posX = game.compositor.pb.x;
-    const endX = stage.width - center;
+    const endX = width - center;
     if (posX !== prevPosX && (posX < center || posX > endX)) return;
-    stage.pivot.x = posX;
+    pivot.x = posX;
     this.prevPosX = posX;
   }
 
   init() {
-    this.stage.pivot.x = this.center;
-    this.stage.position.x = this.center;
+    this.pivot.x = this.center;
+    this.position.x = this.center;
   }
 }

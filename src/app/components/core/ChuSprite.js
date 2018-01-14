@@ -51,6 +51,22 @@ export default class ChuSprite extends Sprite {
     return this.game.resources[this.tilesetName].textures;
   }
 
+  get indexX() {
+    return Math.floor(this.x / (Game.constants.unit * Game.constants.scale));
+  }
+
+  get indexY() {
+    return Math.floor(this.y / (Game.constants.unit * Game.constants.scale));
+  }
+
+  set indexX(x) {
+    this.x = x * Game.constants.unit * Game.constants.scale;
+  }
+
+  set indexY(y) {
+    this.y = y * Game.constants.unit * Game.constants.scale;
+  }
+
   /**
    * Set Sprite position
    *
@@ -155,10 +171,16 @@ export default class ChuSprite extends Sprite {
    */
   render(texture, coords) {
     this.texture = texture;
-    this.x = coords.x * Game.constants.scale * Game.constants.unit;
-    this.y = coords.y * Game.constants.scale * Game.constants.unit;
-    this.scale.set(Game.constants.scale);
 
+    if (!coords) {
+      this.x = 0;
+      this.y = 0;
+    } else {
+      this.indexX = coords.x ? coords.x : 0;
+      this.indexY = coords.y ? coords.y : 0;
+    }
+
+    this.scale.set(Game.constants.scale);
     this.app.stage.addChild(this);
   }
 }

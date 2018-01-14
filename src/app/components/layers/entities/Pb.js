@@ -2,14 +2,14 @@ import Entity from '../../core/Entity';
 import Physics from '../../traits/Physics';
 import Go from '../../traits/Go';
 import Jump from '../../traits/Jump';
-import Hack from '../../traits/Hack';
+// import Hack from '../../traits/Hack';
 import ChuGame from '../../../ChuGame/ChuGame';
 
 export default class Pb extends Entity {
   constructor(game) {
     super(game, {
       name: 'pb',
-      pos: {
+      init: {
         x: 4,
         y: 2,
         tile: 'idle',
@@ -24,7 +24,7 @@ export default class Pb extends Entity {
     this.addTrait(new Jump(this));
     this.addTrait(new Physics(this));
     if (ChuGame.constants.DEBUG) {
-      this.addTrait(new Hack(this));
+      // this.addTrait(new Hack(this));
     }
     this.addAnim('run', ['run-1', 'run-2', 'run-3'], 15);
   }
@@ -74,15 +74,14 @@ export default class Pb extends Entity {
           this.go.dragFactor = keyState ? this.go.DRAGS.run : this.go.DRAGS.walk;
         },
       },
-    ].forEach((k) => {
-      this.game.input.addKey(k.key, k.handler);
-    });
+    ].forEach(({ key, handler }) => this.game.input.addKey(key, handler));
 
     this.game.input.addClick(1, (e) => {
       if (!ChuGame.constants.DEBUG) return;
 
       this.vel.set(0, 0);
-      this.set(e.offsetX, e.offsetY);
+      const posX = this.game.camera.pivot.x - (this.game.camera.center + e.offsetX);
+      this.set(posX, e.offsetY);
     });
 
     return this;

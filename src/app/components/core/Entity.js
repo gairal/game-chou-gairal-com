@@ -35,9 +35,9 @@ export default class Entity extends ChuSprite {
    */
   draw() {
     return new Promise((resolve) => {
-      this.render(this.textures[this.opts.pos.tile], {
-        x: this.opts.pos.x,
-        y: this.opts.pos.y,
+      this.render(this.textures[this.opts.init.tile], {
+        x: this.opts.init.x,
+        y: this.opts.init.y,
       });
       this.anchor.x = 0.5;
 

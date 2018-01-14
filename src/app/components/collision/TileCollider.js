@@ -34,16 +34,18 @@ export default class TileCollider {
 
   checkX() {
     this.check('x', (matches) => {
-      matches.forEach((match) => {
+      matches.forEach(({ x1, x2 }) => {
         if (this.entity.vel.x > 0) {
-          if (this.entity.right > match.x1) {
-            this.entity.x = (match.x1 - this.entity.hitArea.width) + this.entity.offsetX;
+          if (this.entity.right > x1) {
+            this.entity.x = (x1 - this.entity.hitArea.width) + this.entity.offsetX;
             this.entity.vel.x = 0;
+            this.entity.obstruct(Sides.RIGHT);
           }
         } else if (this.entity.vel.x < 0) {
-          if (this.entity.left < match.x2) {
-            this.entity.x = match.x2 + this.entity.offsetX;
+          if (this.entity.left < x2) {
+            this.entity.x = x2 + this.entity.offsetX;
             this.entity.vel.x = 0;
+            this.entity.obstruct(Sides.LEFT);
           }
         }
       });
@@ -52,17 +54,18 @@ export default class TileCollider {
 
   checkY() {
     this.check('y', (matches) => {
-      matches.forEach((match) => {
+      matches.forEach(({ y1, y2 }) => {
         if (this.entity.vel.y > 0) {
-          if (this.entity.bottom > match.y1) {
-            this.entity.y = match.y1 - this.entity.hitArea.height;
+          if (this.entity.bottom > y1) {
+            this.entity.y = y1 - this.entity.hitArea.height;
             this.entity.vel.y = 0;
             this.entity.obstruct(Sides.BOTTOM);
           }
         } else if (this.entity.vel.y < 0) {
-          if (this.entity.top < match.y2) {
-            this.entity.y = match.y2;
+          if (this.entity.top < y2) {
+            this.entity.y = y2;
             this.entity.vel.y = 0;
+            this.entity.obstruct(Sides.TOP);
           }
         }
       });
