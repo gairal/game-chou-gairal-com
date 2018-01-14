@@ -3,7 +3,7 @@ import Sides from '../core/Sides';
 
 export default class Scout extends Trait {
   constructor(entity) {
-    super(entity, 'Scout');
+    super(entity, 'scout');
 
     this.speed = 2;
   }

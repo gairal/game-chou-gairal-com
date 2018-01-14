@@ -9,8 +9,10 @@ export default class ChuSprite extends Sprite {
     this.game = game;
     this.opts = opts;
     this.animations = [];
+    this.hitable = false;
 
     if (opts && opts.hitbox) {
+      this.hitable = true;
       this.hitArea = new Rectangle(
         this.x, this.y,
         opts.hitbox.width * Game.constants.scale,
@@ -65,6 +67,14 @@ export default class ChuSprite extends Sprite {
 
   set indexY(y) {
     this.y = y * Game.constants.unit * Game.constants.scale;
+  }
+
+  overlaps(box) {
+    if (!this.hitable) return false;
+    return this.bottom > box.top
+      && this.top < box.bottom
+      && this.left < box.right
+      && this.right > box.left;
   }
 
   /**
@@ -161,6 +171,7 @@ export default class ChuSprite extends Sprite {
    */
   redraw(delta) {
     const frameName = this.routeFrame(delta);
+    if (!frameName) return;
     this.texture = this.textures[frameName];
   }
 
@@ -171,6 +182,7 @@ export default class ChuSprite extends Sprite {
    * @memberof ChuSprite
    */
   routeFrame(delta) {
+    if (!this.defaultAnim) return undefined;
     return this.defaultAnim.resolveFrame(delta);
   }
 

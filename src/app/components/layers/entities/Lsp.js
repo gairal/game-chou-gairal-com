@@ -1,6 +1,8 @@
 import Entity from '../../core/Entity';
 import Physics from '../../traits/Physics';
 import Scout from '../../traits/Scout';
+import Killable from '../../traits/Killable';
+import LspBehavior from '../../traits/LspBehavior';
 
 export default class Finn extends Entity {
   constructor(game) {
@@ -9,11 +11,16 @@ export default class Finn extends Entity {
       init: { tile: 'idle' },
       hitbox: {
         width: 22,
-        height: 40,
+        height: 31,
       },
     });
 
-    this.addTrait(new Physics(this));
-    this.addTrait(new Scout(this));
+    [Killable, Scout, Physics, LspBehavior].forEach(type => this.addTrait(type));
+  }
+
+  routeFrame() {
+    if (this.killable.dead) return 'dead';
+
+    return 'idle';
   }
 }

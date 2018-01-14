@@ -21,7 +21,6 @@ export default class Dance extends Trait {
   }
 
   update(delta) {
-    this.entity.redraw(this.totalTime);
     this.totalTime += delta;
   }
 }

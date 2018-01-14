@@ -21,7 +21,8 @@ export default class Entity extends ChuSprite {
    * @param {any} trait
    * @memberof Entity
    */
-  addTrait(trait) {
+  addTrait(TraitType) {
+    const trait = new TraitType(this);
     this.traits.push(trait);
     this[trait.NAME] = trait;
   }
@@ -45,6 +46,22 @@ export default class Entity extends ChuSprite {
     });
   }
 
+  /**
+   * Calls when entities collides
+   *
+   * @memberof Entity
+   */
+  collides(candidate) {
+    this.traits.forEach((trait) => {
+      trait.collides(candidate);
+    });
+  }
+
+  /**
+   * Calls when eentity obstruct with a side
+   *
+   * @memberof Entity
+   */
   obstruct(side) {
     this.traits.forEach((trait) => {
       trait.obstruct(side);
@@ -58,6 +75,7 @@ export default class Entity extends ChuSprite {
    * @memberof Entity
    */
   update(delta) {
+    this.redraw();
     this.traits.forEach((trait) => {
       trait.update(delta);
     });

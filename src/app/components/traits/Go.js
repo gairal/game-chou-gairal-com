@@ -54,6 +54,5 @@ export default class Go extends Trait {
     this.entity.vel.x -= this.dragFactor * this.entity.vel.x * absX;
 
     this.distance += absX * delta;
-    this.entity.redraw();
   }
 }

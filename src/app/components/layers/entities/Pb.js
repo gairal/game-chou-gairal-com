@@ -3,6 +3,7 @@ import Physics from '../../traits/Physics';
 import Go from '../../traits/Go';
 import Jump from '../../traits/Jump';
 import Die from '../../traits/Die';
+import Stomper from '../../traits/Stomper';
 // import Hack from '../../traits/Hack';
 import ChuGame from '../../../ChuGame/ChuGame';
 
@@ -21,12 +22,15 @@ export default class Pb extends Entity {
       },
     });
 
-    this.addTrait(new Go(this));
-    this.addTrait(new Jump(this));
-    this.addTrait(new Die(this));
-    this.addTrait(new Physics(this));
+    [
+      Go,
+      Jump,
+      Die,
+      Physics,
+      Stomper
+    ].forEach(type => this.addTrait(type));
     if (ChuGame.constants.DEBUG) {
-      // this.addTrait(new Hack(this));
+      // this.addTrait(Hack);
     }
     this.addAnim('run', ['run-1', 'run-2', 'run-3'], 15);
   }

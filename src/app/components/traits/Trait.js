@@ -14,11 +14,11 @@ export default class Trait {
     this.tasks.push(task);
   }
 
-  // collides(us, them) {
-
-  // }
-
   /* eslint-disable class-methods-use-this */
+  collides(them) {
+    return this.NAME;
+  }
+
   obstruct() {
     return this.NAME;
   }
