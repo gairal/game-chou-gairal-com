@@ -7,7 +7,7 @@ export default class Trait {
 
   finalize() {
     this.tasks.forEach(task => task());
-    this.tasks.length = 0;
+    this.tasks = [];
   }
 
   queue(task) {

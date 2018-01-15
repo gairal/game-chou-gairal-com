@@ -62,9 +62,9 @@ export default class Entity extends ChuSprite {
    *
    * @memberof Entity
    */
-  obstruct(side) {
+  obstruct(side, match) {
     this.traits.forEach((trait) => {
-      trait.obstruct(side);
+      trait.obstruct(side, match);
     });
   }
 

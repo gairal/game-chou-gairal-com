@@ -9,10 +9,8 @@ export default class ChuSprite extends Sprite {
     this.game = game;
     this.opts = opts;
     this.animations = [];
-    this.hitable = false;
 
     if (opts && opts.hitbox) {
-      this.hitable = true;
       this.hitArea = new Rectangle(
         this.x, this.y,
         opts.hitbox.width * Game.constants.scale,
@@ -29,16 +27,32 @@ export default class ChuSprite extends Sprite {
     return this.hitArea.y + this.hitArea.height;
   }
 
+  set bottom(y) {
+    this.y = y - this.hitArea.height;
+  }
+
   get top() {
     return this.hitArea.y;
+  }
+
+  set top(y) {
+    this.y = y;
   }
 
   get left() {
     return this.hitArea.x;
   }
 
+  set left(x) {
+    this.x = x + this.offsetX;
+  }
+
   get right() {
     return this.hitArea.x + this.hitArea.width;
+  }
+
+  set right(x) {
+    this.x = (x - this.hitArea.width) + this.offsetX;
   }
 
   get offsetX() {

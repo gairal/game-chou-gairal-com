@@ -1,10 +1,11 @@
 import Entity from '../../core/Entity';
+import Hitable from '../../traits/Hitable';
+import Killable from '../../traits/Killable';
 import Physics from '../../traits/Physics';
 import Go from '../../traits/Go';
 import Jump from '../../traits/Jump';
 import Die from '../../traits/Die';
 import Stomper from '../../traits/Stomper';
-import Killable from '../../traits/Killable';
 // import Hack from '../../traits/Hack';
 import ChuGame from '../../../ChuGame/ChuGame';
 
@@ -24,6 +25,7 @@ export default class Pb extends Entity {
     });
 
     [
+      Hitable,
       Killable,
       Go,
       Jump,

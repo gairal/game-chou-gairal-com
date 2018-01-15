@@ -1,7 +1,8 @@
 import Entity from '../../core/Entity';
+import Hitable from '../../traits/Hitable';
+import Killable from '../../traits/Killable';
 import Physics from '../../traits/Physics';
 import Scout from '../../traits/Scout';
-import Killable from '../../traits/Killable';
 import Trait from '../../traits/Trait';
 
 class Behavior extends Trait {
@@ -36,7 +37,13 @@ export default class Lsp extends Entity {
       },
     });
 
-    [Killable, Scout, Physics, Behavior].forEach(type => this.addTrait(type));
+    [
+      Hitable,
+      Killable,
+      Scout,
+      Physics,
+      Behavior,
+    ].forEach(type => this.addTrait(type));
   }
 
   routeFrame() {

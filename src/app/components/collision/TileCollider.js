@@ -8,6 +8,8 @@ export default class TileCollider {
   }
 
   check(type, cb) {
+    if (!this.entity.hitable) return;
+
     this.entity.updateHitArea();
     let x1 = this.entity.left;
     let x2 = this.entity.right;
@@ -34,19 +36,11 @@ export default class TileCollider {
 
   checkX() {
     this.check('x', (matches) => {
-      matches.forEach(({ x1, x2 }) => {
-        if (this.entity.vel.x > 0) {
-          if (this.entity.right > x1) {
-            this.entity.x = (x1 - this.entity.hitArea.width) + this.entity.offsetX;
-            this.entity.vel.x = 0;
-            this.entity.obstruct(Sides.RIGHT);
-          }
-        } else if (this.entity.vel.x < 0) {
-          if (this.entity.left < x2) {
-            this.entity.x = x2 + this.entity.offsetX;
-            this.entity.vel.x = 0;
-            this.entity.obstruct(Sides.LEFT);
-          }
+      matches.forEach((match) => {
+        if (this.entity.vel.x > 0 && this.entity.right > match.x1) {
+          this.entity.obstruct(Sides.RIGHT, match);
+        } else if (this.entity.vel.x < 0 && this.entity.left < match.x2) {
+          this.entity.obstruct(Sides.LEFT, match);
         }
       });
     });
@@ -54,19 +48,11 @@ export default class TileCollider {
 
   checkY() {
     this.check('y', (matches) => {
-      matches.forEach(({ y1, y2 }) => {
-        if (this.entity.vel.y > 0) {
-          if (this.entity.bottom > y1) {
-            this.entity.y = y1 - this.entity.hitArea.height;
-            this.entity.vel.y = 0;
-            this.entity.obstruct(Sides.BOTTOM);
-          }
-        } else if (this.entity.vel.y < 0) {
-          if (this.entity.top < y2) {
-            this.entity.y = y2;
-            this.entity.vel.y = 0;
-            this.entity.obstruct(Sides.TOP);
-          }
+      matches.forEach((match) => {
+        if (this.entity.vel.y > 0 && this.entity.bottom > match.y1) {
+          this.entity.obstruct(Sides.BOTTOM, match);
+        } else if (this.entity.vel.y < 0 && this.entity.top < match.y2) {
+          this.entity.obstruct(Sides.TOP, match);
         }
       });
     });
