@@ -10,7 +10,8 @@ export default class EntityCollider {
 
       if (subject.overlaps(candidate)) {
         subject.collides(candidate);
-        candidate.collides(subject);
+        // TODO: this might be useful, not sure
+        // candidate.collides(subject);
       }
     });
   }

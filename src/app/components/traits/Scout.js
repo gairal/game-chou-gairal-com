@@ -11,7 +11,7 @@ export default class Scout extends Trait {
     this.speed = 2;
   }
 
-  disable() {
+  stop() {
     this.speed = 0;
   }
 

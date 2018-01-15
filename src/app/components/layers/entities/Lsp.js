@@ -15,13 +15,11 @@ class Behavior extends Trait {
     if (them.stomper) {
       if (them.vel.y > this.entity.vel.y) {
         this.entity.killable.kill();
-        them.stomper.bounce(this.entity);
-        this.entity.scout.speed = 0;
+        this.entity.scout.stop();
       } else {
         them.killable.kill();
       }
     } else {
-      // This doesn't work because they both collides multiple times
       this.entity.scout.bounce();
     }
   }

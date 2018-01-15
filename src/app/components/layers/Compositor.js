@@ -82,6 +82,9 @@ export default class Compositor {
     this.entities.forEach((entity) => {
       this.entityCollider.check(entity);
     });
+    this.entities.forEach((entity) => {
+      entity.finalize();
+    });
     this.game.camera.update();
   }
 

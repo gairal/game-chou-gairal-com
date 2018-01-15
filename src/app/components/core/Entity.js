@@ -81,6 +81,16 @@ export default class Entity extends ChuSprite {
     });
   }
 
+  /**
+   * Finalise state for each trait
+   *
+   * @memberof Entity
+   */
+  finalize() {
+    this.traits.forEach((trait) => {
+      trait.finalize();
+    });
+  }
 
   /* eslint-disable class-methods-use-this */
   /**
