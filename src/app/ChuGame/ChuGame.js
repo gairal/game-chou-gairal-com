@@ -50,7 +50,8 @@ export default class ChuGame {
   init() {
     this.compositor.init();
     // this.compositor.load().then(res => this.start(res));
-    document.body.appendChild(this.app.view);
+    // document.body.appendChild(this.app.view);
+    document.getElementById('canvas-container').appendChild(this.app.view);
 
     return this;
   }

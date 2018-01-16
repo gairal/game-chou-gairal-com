@@ -9,6 +9,7 @@
 /******* GLOBAL *******/
 body {
   background-color: color(chu-black);
+  height: 100vh;
 }
 
 .hidden {
@@ -16,6 +17,12 @@ body {
 }
 
 /******* SECTION PROGRESS *******/
+.canvas-container {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+}
+
 .progress {
   display: flex;
   position: fixed;
