@@ -1,15 +1,18 @@
 @import 'common/variables';
 @import 'common/mixins';
 @import 'common/libs';
+@import 'common/fonts';
 
 /**************************************************
  ******* Put you code here or in subfolders *******
  *************************************************/
 
 /******* GLOBAL *******/
+
 body {
   background-color: color(chu-black);
   height: 100vh;
+  font-family: AdventureChu, 'sans-serif';
 }
 
 .hidden {
@@ -19,34 +22,64 @@ body {
 /******* SECTION PROGRESS *******/
 .canvas-container {
   display: flex;
-  height: 100vh;
   align-items: center;
+  height: 100vh;
 }
 
 .progress {
-  display: flex;
+  // display: flex;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
   z-index: z(progress);
   background-color: color(pinky);
 
   .progress-bar {
-    appearance: none;
-
-    border-right: 0;
-    border-left: 0;
-
+    display: flex;
+    flex-flow: column wrap;
     background-color: color(greeny);
-    width: 100%;
+    width: 0;
     height: 100%;
+    overflow-x: hidden;
 
-    &::-webkit-progress-bar {
-      background-color: color(pinky);
+    .title-container {
+      display: flex;
+      flex: 1;
+      flex-flow: column wrap;
+      justify-content: center;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 6rem;
+    }
+
+    .form {
+      display: flex;
+      flex: 1;
+      flex-flow: row wrap;
+      align-content: center;
+      justify-content: space-around;
+    }
+
+    .input {
+      appearance: none;
+      border: 0;
+      border-radius: 10px;
+      width: 4rem;
+      height: 4rem;
+      text-align: center;
+      font-size: 2em;
+    }
+
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button {
+      appearance: none;
+      margin: 0;
     }
   }
 }

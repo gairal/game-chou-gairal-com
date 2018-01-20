@@ -28,7 +28,7 @@ export default class ChuGame {
       gravity: 0.8,
       hasGravity: true,
       logLevel: Logger.levels.LOG,
-      DEBUG: false,
+      DEBUG: true,
     };
   }
 

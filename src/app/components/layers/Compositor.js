@@ -2,6 +2,7 @@ import EntityCollider from '../collision/EntityCollider';
 import Progress from './Progress';
 import Level from './Level';
 import Pb from './entities/Pb';
+import Game from '../../ChuGame';
 
 export default class Compositor {
   constructor(game) {
@@ -10,7 +11,7 @@ export default class Compositor {
     this.layers = [];
     this.entities = [];
 
-    this.progress = new Progress();
+    this.progress = Progress.factory();
     this.entityCollider = new EntityCollider(this.entities);
   }
 
@@ -64,7 +65,7 @@ export default class Compositor {
             url: 'assets/json/lsp.json',
           },
         ])
-        .on('progress', loader => this.progress.progress(loader))
+        .on('progress', loader => this.progress.progress(loader, Game.constants.DEBUG))
         .load((loader, resources) => resolve(resources));
     });
   }
