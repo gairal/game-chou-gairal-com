@@ -23,6 +23,7 @@
         "sass": "app.scss",
         "sassAll": "**/*.scss",
         "css": "**/*.css",
+        "jsIndex": "app.js",
         "js": "**/*.js",
         "fonts": "**",
         "images": "{,*/,*/*/}*.{png,jpg,jpeg,gif}",

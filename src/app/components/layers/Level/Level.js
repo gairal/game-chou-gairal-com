@@ -85,10 +85,12 @@ export default class Level {
    * @memberof Level
    */
   resetTile(x, y) {
-    const { sprite } = this.grid.get(x, y);
-    this.grid.set(x, y);
+    const tile = this.grid.get(x, y);
 
-    this.game.app.stage.removeChild(sprite);
+    if (tile) {
+      this.grid.set(x, y);
+      this.game.app.stage.removeChild(tile.sprite);
+    }
   }
 
   /**
