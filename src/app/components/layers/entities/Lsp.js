@@ -1,9 +1,9 @@
 import Entity from '../../core/Entity';
+import Trait from '../../traits/Trait';
 import Hitable from '../../traits/Hitable';
 import Killable from '../../traits/Killable';
 import Physics from '../../traits/Physics';
 import Scout from '../../traits/Scout';
-import Trait from '../../traits/Trait';
 
 class Behavior extends Trait {
   constructor(entity) {
@@ -38,10 +38,10 @@ export default class Lsp extends Entity {
     });
 
     [
+      Physics,
+      Scout,
       Hitable,
       Killable,
-      Scout,
-      Physics,
       Behavior,
     ].forEach(type => this.addTrait(type));
   }

@@ -7,15 +7,7 @@ export default class Physics extends Trait {
   }
 
   update(delta) {
-    this.entity.x += this.entity.vel.x * delta;
-    this.entity.tileCollider.checkX();
-
-    this.entity.y += this.entity.vel.y * delta;
-    this.entity.tileCollider.checkY();
-
-    this.entity.showHit();
-
-    if (Game.constants.hasGravity) {
+    if (Game.constants.hasGravity && this.entity.hasMass) {
       this.entity.vel.y += Game.constants.gravity * delta;
     }
   }

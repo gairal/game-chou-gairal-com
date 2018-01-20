@@ -9,6 +9,7 @@ export default class Entity extends ChuSprite {
     this.traits = [];
     this.vel = opts.vel ? new Vec2(opts.vel.x, opts.vel.y) : new Vec2(0, 0);
     this.tileCollider = new TileCollider(this);
+    this.hasMass = true;
   }
 
   get name() {

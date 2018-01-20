@@ -1,6 +1,6 @@
 import Trait from './Trait';
 
-export default class Die extends Trait {
+export default class Fall extends Trait {
   constructor(entity) {
     super(entity, 'hack');
 

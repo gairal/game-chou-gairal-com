@@ -63,6 +63,9 @@ export default class Compositor {
           }, {
             name: 'lsp',
             url: 'assets/json/lsp.json',
+          }, {
+            name: 'iceking',
+            url: 'assets/json/iceking.json',
           },
         ])
         .on('progress', loader => this.progress.progress(loader, Game.constants.DEBUG))

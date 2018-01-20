@@ -35,4 +35,14 @@ export default class Hitable extends Trait {
         break;
     }
   }
+
+  update(delta) {
+    this.entity.x += this.entity.vel.x * delta;
+    this.entity.tileCollider.checkX();
+
+    this.entity.y += this.entity.vel.y * delta;
+    this.entity.tileCollider.checkY();
+
+    this.entity.showHit();
+  }
 }

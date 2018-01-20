@@ -240,6 +240,30 @@
 				"y": 0.5
 			}
 		},
+		"ruinbricks": {
+			"frame": {
+				"x": 288,
+				"y": 192,
+				"w": 32,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 288,
+				"y": 192,
+				"w": 32,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 32,
+				"h": 32
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
 		"snow": {
 			"frame": {
 				"x": 64,

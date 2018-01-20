@@ -2,13 +2,6 @@
 
 ---
 
-### TODO
-- [] Add a code on the loader
-- [] Add a title
-- Ep 12 - 48min
-
----
-
 > Developed with [Gulp](http://gulpjs.com), [PixiJS](http://www.pixijs.com/), [Sass](http://sass-lang.com), [Pug](https://pugjs.org), [Babel](https://babeljs.io), [ES2015](https://babeljs.io/docs/learn-es2015/), [webpack](http://webpack.github.io)
 
 Simple platformer developed as a present.

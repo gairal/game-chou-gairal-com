@@ -3,6 +3,7 @@ import map from './json/1-1.json';
 import Tile from '../../core/Tile';
 import Lsp from '../entities/Lsp';
 import Finn from '../entities/Finn';
+import Iceking from '../entities/Iceking';
 
 export default class Level {
   constructor(game) {
@@ -18,6 +19,7 @@ export default class Level {
     this.entityMap = {
       lsp: Lsp,
       finn: Finn,
+      iceking: Iceking,
     };
   }
 

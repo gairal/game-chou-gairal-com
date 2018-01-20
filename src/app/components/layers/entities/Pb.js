@@ -4,7 +4,7 @@ import Killable from '../../traits/Killable';
 import Physics from '../../traits/Physics';
 import Go from '../../traits/Go';
 import Jump from '../../traits/Jump';
-import Die from '../../traits/Die';
+import Fall from '../../traits/Fall';
 import Stomper from '../../traits/Stomper';
 // import Hack from '../../traits/Hack';
 import ChuGame from '../../../ChuGame/ChuGame';
@@ -14,7 +14,7 @@ export default class Pb extends Entity {
     super(game, {
       name: 'pb',
       init: {
-        x: 4,
+        x: 110, // 4
         y: 2,
         tile: 'idle',
       },
@@ -25,13 +25,13 @@ export default class Pb extends Entity {
     });
 
     [
+      Physics,
       Hitable,
       Killable,
       Go,
       Jump,
-      Die,
-      Physics,
       Stomper,
+      Fall,
     ].forEach(type => this.addTrait(type));
     if (ChuGame.constants.DEBUG) {
       // this.addTrait(Hack);

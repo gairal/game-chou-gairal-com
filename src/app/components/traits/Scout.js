@@ -17,6 +17,7 @@ export default class Scout extends Trait {
 
   bounce() {
     this.speed *= -1;
+    this.entity.orient(Math.sign(this.speed));
   }
 
   obstruct(side) {

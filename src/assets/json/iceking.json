@@ -1,0 +1,58 @@
+{"frames": {
+
+"fly-1":
+{
+	"frame": {"x":0,"y":0,"w":80,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":75},
+	"sourceSize": {"w":80,"h":75}
+},
+"fly-2":
+{
+	"frame": {"x":80,"y":0,"w":80,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":75},
+	"sourceSize": {"w":80,"h":75}
+},
+"fly-3":
+{
+	"frame": {"x":160,"y":0,"w":80,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":75},
+	"sourceSize": {"w":80,"h":75}
+},
+"fly-4":
+{
+	"frame": {"x":240,"y":0,"w":80,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":75},
+	"sourceSize": {"w":80,"h":75}
+},
+"fly-5":
+{
+	"frame": {"x":320,"y":0,"w":80,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":75},
+	"sourceSize": {"w":80,"h":75}
+},
+"fly-6":
+{
+	"frame": {"x":400,"y":0,"w":80,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":75},
+	"sourceSize": {"w":80,"h":75}
+}},
+"meta": {
+	"version": "1.0",
+	"image": "../img/iceking/iceking.png",
+	"format": "RGBA8888",
+	"size": {"w":480,"h":75},
+	"scale": 1.5
+}
+}
