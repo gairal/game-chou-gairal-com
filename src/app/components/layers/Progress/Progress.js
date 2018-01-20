@@ -36,7 +36,6 @@ export default class Progress {
       $input.addEventListener('keyup', (e) => {
         const curr = e.currentTarget;
         if (curr.value.length === 1) {
-          console.log(curr.value);
           const next = curr.nextElementSibling;
           if (next) {
             next.focus();
