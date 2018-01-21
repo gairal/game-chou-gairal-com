@@ -14,7 +14,7 @@ export default class Pb extends Entity {
     super(game, {
       name: 'pb',
       init: {
-        x: 110, // 4
+        x: 60, // 4
         y: 2,
         tile: 'idle',
       },
