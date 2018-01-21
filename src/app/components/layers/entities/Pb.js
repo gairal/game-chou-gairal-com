@@ -92,14 +92,6 @@ export default class Pb extends Entity {
       },
     ].forEach(({ key, handler }) => this.game.input.addKey(key, handler));
 
-    this.game.input.addClick(1, (e) => {
-      if (!ChuGame.constants.DEBUG) return;
-
-      this.vel.set(0, 0);
-      const posX = (this.game.camera.pivot.x - this.game.camera.center) + e.offsetX;
-      this.set(posX, e.offsetY);
-    });
-
     return this;
   }
 }

@@ -864,6 +864,78 @@
 				"y": 0.5
 			}
 		},
+		"evilmushroom-1": {
+			"frame": {
+				"x": 64,
+				"y": 448,
+				"w": 32,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 64,
+				"y": 448,
+				"w": 32,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 32,
+				"h": 32
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"evilmushroom-2": {
+			"frame": {
+				"x": 96,
+				"y": 448,
+				"w": 32,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 96,
+				"y": 448,
+				"w": 32,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 32,
+				"h": 32
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"evilmushroom-3": {
+			"frame": {
+				"x": 128,
+				"y": 448,
+				"w": 32,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 128,
+				"y": 448,
+				"w": 32,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 32,
+				"h": 32
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
 		"bush-1": {
 			"frame": {
 				"x": 480,

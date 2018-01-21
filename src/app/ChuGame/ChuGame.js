@@ -22,14 +22,18 @@ export default class ChuGame {
   }
 
   static get constants() {
-    return {
+    const constants = {
       unit: 16,
       scale: 2,
       gravity: 0.8,
       hasGravity: true,
-      logLevel: Logger.levels.LOG,
+      logLevel: Logger.levels.ERROR,
       DEBUG: true,
     };
+
+    if (constants.DEBUG) constants.logLevel = Logger.levels.DEBUG;
+
+    return constants;
   }
 
   resize() {

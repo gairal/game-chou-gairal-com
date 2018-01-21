@@ -109,6 +109,18 @@ export default class Compositor {
       this.game.camera.init();
       this.app.ticker.add(delta => this.update(delta));
     });
+
+    this.game.input.addClick(1, (e) => {
+      if (!Game.constants.DEBUG) return;
+
+      this.pb.vel.set(0, 0);
+      const posX = (this.game.camera.pivot.x - this.game.camera.center) + e.offsetX;
+      this.pb.set(posX, e.offsetY);
+
+      const euclPosX = Math.floor(posX / (Game.constants.unit * Game.constants.scale));
+      const euclPosY = Math.floor(e.offsetY / (Game.constants.unit * Game.constants.scale));
+      this.game.logger.info('x:', euclPosX, 'y:', euclPosY);
+    });
   }
 
   init() {
