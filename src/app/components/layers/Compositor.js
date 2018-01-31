@@ -25,8 +25,8 @@ export default class Compositor {
       dropShadowColor: 'rgba(0, 0, 0, .5)',
       dropShadowBlur: 4,
       dropShadowAngle: Math.PI / 6,
-      dropShadowDistance: 6
-  });
+      dropShadowDistance: 6,
+    });
   }
 
   get app() {
