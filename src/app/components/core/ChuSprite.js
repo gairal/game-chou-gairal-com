@@ -121,7 +121,7 @@ export default class ChuSprite extends Sprite {
    * @memberof Entity
    */
   logPos() {
-    this.game.logger.info(this.name, `| x: ${this.x} - y: ${this.y}`);
+    this.game.logger.debug(this.name, `| x: ${this.x} - y: ${this.y}`);
   }
 
   /**

@@ -1079,6 +1079,30 @@
 				"x": 0.5,
 				"y": 0.5
 			}
+		},
+		"creeper": {
+			"frame": {
+				"x": 480,
+				"y": 256,
+				"w": 32,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 480,
+				"y": 256,
+				"w": 32,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 32,
+				"h": 32
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
 		}
 	},
 	"meta": {

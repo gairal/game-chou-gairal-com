@@ -28,10 +28,11 @@ export default class ChuGame {
       gravity: 0.8,
       hasGravity: true,
       logLevel: Logger.levels.ERROR,
-      DEBUG: true,
+      DEBUG: false,
     };
 
-    if (constants.DEBUG) constants.logLevel = Logger.levels.DEBUG;
+    if (constants.DEBUG
+      && constants.logLevel < Logger.levels.INFO) constants.logLevel = Logger.levels.INFO;
 
     return constants;
   }

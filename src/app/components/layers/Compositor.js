@@ -1,3 +1,4 @@
+import { Text, TextStyle } from 'pixi.js';
 import EntityCollider from '../collision/EntityCollider';
 import Progress from './Progress';
 import Level from './Level';
@@ -13,6 +14,19 @@ export default class Compositor {
 
     this.progress = Progress.factory();
     this.entityCollider = new EntityCollider(this.entities);
+
+    this.textStyle = new TextStyle({
+      fontFamily: 'AdventureChu',
+      fontSize: 36,
+      fill: ['#57adeb', '#fd70f7'], // gradient
+      stroke: '#4a1850',
+      strokeThickness: 5,
+      dropShadow: true,
+      dropShadowColor: 'rgba(0, 0, 0, .5)',
+      dropShadowBlur: 4,
+      dropShadowAngle: Math.PI / 6,
+      dropShadowDistance: 6
+  });
   }
 
   get app() {
@@ -22,6 +36,13 @@ export default class Compositor {
   addEntity(entity) {
     this[entity.name] = entity;
     this.entities.push(entity);
+  }
+
+  stageText(str, x, y) {
+    const text = new Text(str, this.textStyle);
+    text.x = x * Game.constants.unit * Game.constants.scale;
+    text.y = y * Game.constants.unit * Game.constants.scale;
+    this.app.stage.addChild(text);
   }
 
   stageEntity(type, x, y) {
@@ -103,6 +124,7 @@ export default class Compositor {
     new Promise((resolve) => {
       this.level = Level.factory(this.game);
       this.level.loadEntites();
+      this.level.loadTexts();
       this.stageEntity(Pb);
       resolve();
     }).then(() => {

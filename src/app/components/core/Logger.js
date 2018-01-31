@@ -13,6 +13,9 @@ export default class Logger {
   }
 
   /* eslint-disable no-console */
+  debug(...msg) {
+    if (this.level >= Logger.levels.DEBUG) console.info(...msg);
+  }
 
   info(...msg) {
     if (this.level >= Logger.levels.INFO) console.info(...msg);

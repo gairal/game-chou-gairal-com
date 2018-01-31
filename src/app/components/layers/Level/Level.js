@@ -172,6 +172,17 @@ export default class Level {
   }
 
   /**
+   * Load all vilains !!
+   *
+   * @memberof Level
+   */
+  loadTexts() {
+    this.map.texts
+      .forEach(({ text, x, y }) => this.game.compositor
+        .stageText(text, x, y));
+  }
+
+  /**
    * First rendering
    *
    * @returns
