@@ -13,7 +13,8 @@
         "fonts": "assets/fonts/",
         "js": "app/",
         "json": "assets/json/",
-        "static": "static/"
+        "static": "static/",
+        "mp3": "assets/mp3/"
     },
     "files": {
         "index": "index.html",
@@ -29,7 +30,8 @@
         "images": "{,*/,*/*/}*.{png,jpg,jpeg,gif}",
         "json": "**/*.json",
         "static": "**",
-        "hidden": ".**"
+        "hidden": ".**",
+        "mp3": "**/*.mp3"
     },
     "vendor":{
         "js": [],

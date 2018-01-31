@@ -31,6 +31,12 @@ export default class Progress {
     this.$inputs[0].focus();
   }
 
+  static startMusic() {
+    const audio = new Audio('assets/mp3/theme.mp3');
+    audio.loop = true;
+    audio.play();
+  }
+
   init() {
     this.$inputs.forEach(($input) => {
       $input.addEventListener('keyup', (e) => {
@@ -41,6 +47,7 @@ export default class Progress {
             next.focus();
           } else if (this.isSesame) {
             this.hide();
+            Progress.startMusic();
           } else this.resetCode();
         } else {
           e.currentTarget.value = '';
